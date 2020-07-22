@@ -6,20 +6,23 @@ body {
 
 .game-container {
     /* position: relative; */
-    background-color: aqua;
+    background-color: rgb(247, 233, 158);
     height: 100%;
 }
 
 header {
-    position: relative;
-    background-color: chartreuse;
+    /* position: relative; */
+    background-color: rgba(219, 118, 105, 0.452);
+    border-radius: 10px;
     height: 80px;
+    
 }
 
+
 .hints {
-    background-color: crimson;
+    /* background-color: crimson; */
     position: absolute;
-    width: 33%;
+    width: 45%;
     height: 100%;
     /* margin: auto; */
     /* display: inline; */
@@ -27,24 +30,25 @@ header {
 
 
 .restart-container {
-    background-color: darkmagenta;
+    /* background-color: darkmagenta; */
+    position: relative;
     color: ivory;
     font-size: 50px;
-    width: 33%;
+    width: 45%;
     height: 100%;
     margin: 0 auto;
 }
 
 .restart-container p .restart{
     cursor: pointer;
-    padding: 5%;
+    padding: 3%;
 }
 
 .display {
     position: absolute;
     font-size: 30px;
-    background-color: darkorange;
-    width: 33%;
+    /* background-color: darkorange; */
+    width: 45%;
     height: 100%;
     right: 0%;
     top: 0%

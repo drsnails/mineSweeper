@@ -10,6 +10,7 @@ function setMinesNegsCount() {
     }
 }
 
+
 function countMinesNegs(cellI, cellJ) {
     var minesSum = 0
     for (var i = cellI - 1; i <= cellI + 1; i++) {
@@ -51,9 +52,6 @@ function getRandomInt(min, max) {
 }
 
 
-
-
-
 function setMines(firstPos) {
     var minesCoords = getMinesCoords(firstPos)
     for (var i = 0; i < minesCoords.length; i++) {
@@ -81,9 +79,7 @@ function getMinesCoords(firstCellPos) {
 }
 
 
-
-
-function getAllCellsCoords(emptyArg) {
+function getAllCellsCoords() {
     var cellsCoords = []
     for (var i = 0; i < gLevel.SIZE; i++) {
         for (var j = 0; j < gLevel.SIZE; j++) {
@@ -114,7 +110,6 @@ function drawRandCell(cells) {
 }
 
 
-
 // sorry about that
 function expandShown(negsCoords, visited) {
     console.log(negsCoords);
@@ -132,7 +127,6 @@ function expandShown(negsCoords, visited) {
                     nextNegsCoords.push(currNegPos)
                 }
             }
-
         }
     }
     if (nextNegsCoords.length === 0) {
@@ -171,6 +165,12 @@ function isVisited(location, visitedList) {
 /////////////////////////////////////////////
 
 
+
+
+
+
+
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -179,16 +179,6 @@ function getRandomColor() {
     }
     return color;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

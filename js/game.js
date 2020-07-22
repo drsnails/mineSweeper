@@ -1,6 +1,6 @@
 'use strict'
 const NORMAL = '😃'
-const WON = "&#128526"
+const WIN = "😎"
 const DEAD = "😵"
 const MINE = "&#128163"
 const HINT = "💡"
@@ -97,19 +97,29 @@ function createCell(i, j) {
     return cell
 }
 
+function winCheck() {
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            var cell = gBoard[i][j]
+            if (!(cell.isMarked === cell.isMine)) return false
+            // if (!cell.isMarked && cell.isMine) 
+        }
+    }
+    return true
+}
 
-function gameOver() {
-    
+
+function gameOver(isWin) {
+    clearInterval(gTimeInterval)
+    gGame.isOn = false
     console.log("Game Over!")
     var elRestart = document.querySelector('.restart-container p .restart')
-    elRestart.innerText = DEAD
+    elRestart.innerText = (isWin) ? WIN : DEAD
     gGame.isOn = false
-    // resetDiffBtnsColor()
 }
 
 
 function cellClicked(ev, i, j) {
-    // console.log('cell clicked:', gBoard[i][j]);
     var cell = gBoard[i][j]
     if (!gGame.isOn) return
     if (cell.isMarked) return
@@ -137,8 +147,13 @@ function firstClick(firstPos) {
     // renderBoard()
 }
 
+function checkWin() {
+
+}
+
 function mark(i, j) {
     var cell = gBoard[i][j]
+    if (!gGame.isOn) return
     if (cell.isShown) return
     if (cell.isMarked) {
         cell.isMarked = false
@@ -146,9 +161,10 @@ function mark(i, j) {
     } else {
         cell.isMarked = true
         gGame.markedCount++
-        
+
     }
     renderBoard()
+    if (winCheck()) return gameOver(true)
 }
 
 function renderTime() {
