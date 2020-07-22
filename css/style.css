@@ -25,32 +25,29 @@ header {
     /* display: inline; */
 }
 
-.display {
+
+.restart-container {
     background-color: darkmagenta;
     color: ivory;
-    font-size: 30px;
+    font-size: 50px;
     width: 33%;
     height: 100%;
     margin: 0 auto;
 }
 
-.display .time {
-    border: solid 1px blue
+.restart-container p .restart{
+    cursor: pointer;
+    padding: 5%;
 }
-.restart-container {
+
+.display {
     position: absolute;
+    font-size: 30px;
     background-color: darkorange;
     width: 33%;
     height: 100%;
     right: 0%;
     top: 0%
-}
-
-.restart-container button {
-    text-align: center;
-    margin-top: 4%;
-    width: 30%;
-    height: 50%;
 }
 
 

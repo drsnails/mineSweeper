@@ -1,7 +1,7 @@
 'use strict'
-const NORMAL = 'U+1F603'
+const NORMAL = '😃'
 const WON = "&#128526"
-const DEAD = "&#128565"
+const DEAD = "😵"
 const MINE = "&#128163"
 const HINT = "💡"
 
@@ -23,6 +23,8 @@ var gGame = {
 function init() {
     clearInterval(gTimeInterval)
     var elTime = document.querySelector('.display .value')
+    var elRestart = document.querySelector('.restart-container p .restart')
+    elRestart.innerText = NORMAL
     elTime.innerText = '0.00'
     gTime = Date.now()
     gGame.isOn = true
@@ -99,6 +101,8 @@ function createCell(i, j) {
 function gameOver() {
     
     console.log("Game Over!")
+    var elRestart = document.querySelector('.restart-container p .restart')
+    elRestart.innerText = DEAD
     gGame.isOn = false
     // resetDiffBtnsColor()
 }
