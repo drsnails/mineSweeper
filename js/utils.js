@@ -112,7 +112,6 @@ function drawRandCell(cells) {
 
 // sorry about that
 function expandShown(negsCoords, visited) {
-    console.log(negsCoords);
     var nextNegsCoords = []
     for (var i = 0; i < negsCoords.length; i++) {
         var cellCoord = negsCoords[i]

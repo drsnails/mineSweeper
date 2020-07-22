@@ -102,7 +102,6 @@ function winCheck() {
         for (var j = 0; j < gLevel.SIZE; j++) {
             var cell = gBoard[i][j]
             if (!(cell.isMarked === cell.isMine)) return false
-            // if (!cell.isMarked && cell.isMine) 
         }
     }
     return true
@@ -141,19 +140,19 @@ function firstClick(firstPos) {
     gTimeInterval = setInterval(renderTime, 10)
     gBoard = createBoard()
     var cell = gBoard[firstPos.i][firstPos.j]
+    if (cell.isMine) gameOver(false)
     setMines(firstPos)
     countMinesNegs()
     setMinesNegsCount()
     // renderBoard()
 }
 
-function checkWin() {
 
-}
 
 function mark(i, j) {
-    var cell = gBoard[i][j]
     if (!gGame.isOn) return
+    var cell = gBoard[i][j]
+    
     if (cell.isShown) return
     if (cell.isMarked) {
         cell.isMarked = false
@@ -161,10 +160,10 @@ function mark(i, j) {
     } else {
         cell.isMarked = true
         gGame.markedCount++
-
+        renderBoard()
+        if (winCheck()) return gameOver(true)
     }
     renderBoard()
-    if (winCheck()) return gameOver(true)
 }
 
 function renderTime() {

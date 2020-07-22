@@ -71,10 +71,9 @@ header {
 }
 
 td {
-    border: 1px solid grey;
+    border: 1px inset grey;
     width: 10%;
     height: 44px;
-    /* padding: 1%; */
     background-color: rgb(205, 226, 205);
     color: rgb(41, 59, 221);
     text-align: center;
