@@ -42,6 +42,13 @@ header {
     top: 0%
 }
 
+.restart-container button {
+    text-align: center;
+    margin-top: 10%;
+    width: 50%;
+    height: 50%;
+}
+
 
 
 .game-board {
@@ -54,7 +61,7 @@ header {
     
     box-sizing: content-box;
     left: 25%;
-    top: 17%;
+    top: 12%;
     
 }
 
@@ -78,7 +85,7 @@ td {
 
 
 .mark {
-    background-color: rgb(202, 45, 69)
+    background-color: rgb(202, 45, 69) !important
 
 }
 
@@ -92,24 +99,43 @@ td {
 
 footer {
     position: absolute;
-    background-color: rgb(253, 240, 56);
+    /* background-color: rgb(253, 240, 56); */
     width: 100%;
     bottom: 0%;
-    max-height: 100px;
+    /* max-height: 100px; */
 }
 
 button {
     cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgb(253, 246, 209);
+    transition: 0.2s;
 }
 
 
 .diff-btns button{
     background-color: rgb(253, 246, 209);
     box-sizing: content-box;
-    width: 17%;
-    height: 30px;
-    margin: 0px 10px;
+    width: 10%;
+    height: 35px;
+    margin: 20px 5%;
     cursor: pointer;
-    outline: none;
+    border-radius: 5px;
+    
     
 }
+
+.diff-btns {
+    min-width: 80px;
+}
+
+button:hover {
+    background-color:  rgb(250, 232, 145);
+}
+
+/* .diff-btns button:hover {
+    
+    width: 12%;
+    height: 38px;
+} */

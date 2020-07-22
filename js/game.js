@@ -22,8 +22,10 @@ var gGame = {
 function init() {
     gGame.isOn = true
     gGame.shownCount = 0
+    gGame.markedCount = 0
     gLevel.SIZE = 4
     gBoard = createBoard()
+    resetDiffBtnsColor()
     renderBoard()
 }
 
@@ -49,7 +51,8 @@ function renderBoard() {
                 strHtml += `style="background-color: red"`
             }
 
-            strHtml += `data-i="${i}" data-j="${j}" class="cell ${cellClass}" onclick="cellClicked(this, ${i}, ${j})">`
+            strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j})" 
+            oncontextmenu="mark(${i},${j})">`
             // strHtml += cellContent
             strHtml += `${cellContent}</td>`
         }
@@ -89,19 +92,41 @@ function createCell(i, j) {
 function gameOver() {
     console.log("Game Over!")
     gGame.isOn = false
-    resetDiffBtnsColor()
+    // resetDiffBtnsColor()
 }
 
 
-function cellClicked(elCell, i, j) {
+function cellClicked(ev, i, j) {
     if (!gGame.isOn) return
+    
+    console.log(ev);
     if (gGame.shownCount === 0) {
         firstClick({i, j})
     }
     var cell = gBoard[i][j]
+    if (cell.isMarked) return
+
     console.log(cell);
     if (cell.isMine) gameOver()
-    cell.isShown = !cell.isShown
+    if (!cell.minesAroundCount) {
+
+    }
+    cell.isShown = true
     gGame.shownCount++
+    console.log(gGame.shownCount);
+    renderBoard()
+}
+
+function mark(i, j) {
+    var cell = gBoard[i][j]
+    if (cell.isShown) return
+    if (cell.isMarked) {
+        cell.isMarked = false
+        gGame.markedCount--
+    } else {
+        cell.isMarked = true
+        gGame.markedCount++
+    }
+    console.log(gGame.markedCount);
     renderBoard()
 }

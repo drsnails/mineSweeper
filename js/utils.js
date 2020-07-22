@@ -41,8 +41,6 @@ function setDifficulty(elBtn) {
         gLevel.MINES = 30
     }
     gBoard = createBoard()
-    gBoard[1][1].isMine = true
-    gBoard[2][3].isMine = true
     setMinesNegsCount()
     renderBoard()
 }
@@ -80,7 +78,8 @@ function firstClick(firstPos) {
     setMines(firstPos)
     countMinesNegs()
     setMinesNegsCount()
-    
+    console.log(gBoard);
+    // renderBoard()
 }
 
 
