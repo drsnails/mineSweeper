@@ -28,11 +28,14 @@ header {
 .display {
     background-color: darkmagenta;
     color: ivory;
-    /* height: 50px; */
+    font-size: 30px;
     width: 33%;
     height: 100%;
-    /* display: inline; */
     margin: 0 auto;
+}
+
+.display .time {
+    border: solid 1px blue
 }
 .restart-container {
     position: absolute;

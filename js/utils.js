@@ -24,29 +24,6 @@ function countMinesNegs(cellI, cellJ) {
 }
 
 
-
-
-function setDifficulty(elBtn) {
-    if (!gGame.isOn || gGame.shownCount > 0) return
-    toggleDiffBtnsColor(elBtn)
-    var btnClassName = elBtn.className
-    if (btnClassName === 'easy-btn') {
-        gLevel.SIZE = 4;
-        gLevel.MINES = 2
-    } else if (btnClassName === 'medium-btn') {
-        gLevel.SIZE = 8;
-        gLevel.MINES = 12
-    } else if (btnClassName === 'hard-btn') {
-        gLevel.SIZE = 12;
-        gLevel.MINES = 30
-    }
-    gGame.shownCount = 0
-    gGame.markedCount = 0
-    gBoard = createBoard()
-    setMinesNegsCount()
-    renderBoard()
-}
-
 function toggleDiffBtnsColor(elBtn) {
     var elDiffBtns = document.querySelectorAll('.diff-btns button');
     for (var i = 0; i < elDiffBtns.length; i++) {
@@ -74,14 +51,7 @@ function getRandomInt(min, max) {
 }
 
 
-function firstClick(firstPos) {
-    gBoard = createBoard()
-    var cell = gBoard[firstPos.i][firstPos.j]
-    setMines(firstPos)
-    countMinesNegs()
-    setMinesNegsCount()
-    // renderBoard()
-}
+
 
 
 function setMines(firstPos) {
@@ -144,12 +114,13 @@ function drawRandCell(cells) {
 }
 
 
+
+// sorry about that
 function expandShown(negsCoords, visited) {
     console.log(negsCoords);
     var nextNegsCoords = []
     for (var i = 0; i < negsCoords.length; i++) {
         var cellCoord = negsCoords[i]
-        // var currCell = gBoard[cellCoord.i][cellCoord.j]
         var currNegsPos = getNegiboars(cellCoord.i, cellCoord.j)
         for (var j = 0; j < currNegsPos.length; j++) {
             var currNegPos = currNegsPos[j];
@@ -170,9 +141,7 @@ function expandShown(negsCoords, visited) {
     return expandShown(nextNegsCoords, visited);
 }
 
-function visitedCells() {
 
-}
 
 function getNegiboars(cellI, cellJ) {
     var negsCoords = []

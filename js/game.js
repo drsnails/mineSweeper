@@ -1,17 +1,18 @@
 'use strict'
-const NORMAL = "&#128526"
+const NORMAL = 'U+1F603'
+const WON = "&#128526"
 const DEAD = "&#128565"
 const MINE = "&#128163"
 const HINT = "💡"
 
 var gBoard;
-
+var gTime;
+var gTimeInterval;
+var gCorrectMarks;
 var gLevel = {
     SIZE: 4,
     MINES: 2
 }
-
-
 var gGame = {
     isOn: false,
     shownCount: 0,
@@ -20,9 +21,14 @@ var gGame = {
 }
 
 function init() {
+    clearInterval(gTimeInterval)
+    var elTime = document.querySelector('.display .value')
+    elTime.innerText = '0.00'
+    gTime = Date.now()
     gGame.isOn = true
     gGame.shownCount = 0
     gGame.markedCount = 0
+    gCorrectMarks = 0
     gLevel.SIZE = 4
     gLevel.MINES = 2
     gBoard = createBoard()
@@ -91,6 +97,7 @@ function createCell(i, j) {
 
 
 function gameOver() {
+    
     console.log("Game Over!")
     gGame.isOn = false
     // resetDiffBtnsColor()
@@ -115,6 +122,17 @@ function cellClicked(ev, i, j) {
     renderBoard()
 }
 
+
+function firstClick(firstPos) {
+    gTimeInterval = setInterval(renderTime, 10)
+    gBoard = createBoard()
+    var cell = gBoard[firstPos.i][firstPos.j]
+    setMines(firstPos)
+    countMinesNegs()
+    setMinesNegsCount()
+    // renderBoard()
+}
+
 function mark(i, j) {
     var cell = gBoard[i][j]
     if (cell.isShown) return
@@ -124,6 +142,38 @@ function mark(i, j) {
     } else {
         cell.isMarked = true
         gGame.markedCount++
+        
     }
     renderBoard()
 }
+
+function renderTime() {
+    var currTime = Date.now()
+    var elLogScreen = document.querySelector('.display .value')
+    var timePassed = currTime - gTime
+    var timePassedSecs = (timePassed / 1000).toFixed(2)
+    elLogScreen.innerText = ` ${timePassedSecs}`
+}
+
+function setDifficulty(elBtn) {
+    if (!gGame.isOn || gGame.shownCount > 0) return
+    toggleDiffBtnsColor(elBtn)
+    var btnClassName = elBtn.className
+    if (btnClassName === 'easy-btn') {
+        gLevel.SIZE = 4;
+        gLevel.MINES = 2
+    } else if (btnClassName === 'medium-btn') {
+        gLevel.SIZE = 8;
+        gLevel.MINES = 12
+    } else if (btnClassName === 'hard-btn') {
+        gLevel.SIZE = 12;
+        gLevel.MINES = 30
+    }
+    gGame.shownCount = 0
+    gGame.markedCount = 0
+    gCorrectMarks = 0
+    gBoard = createBoard()
+    setMinesNegsCount()
+    renderBoard()
+}
+
