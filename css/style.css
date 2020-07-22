@@ -1,0 +1,115 @@
+body {
+    background-color: rgb(240, 224, 200);
+    text-align: center;
+    position: relative;
+}
+
+.game-container {
+    /* position: relative; */
+    background-color: aqua;
+    height: 100%;
+}
+
+header {
+    position: relative;
+    background-color: chartreuse;
+    height: 80px;
+}
+
+.hints {
+    background-color: crimson;
+    position: absolute;
+    width: 33%;
+    height: 100%;
+    /* margin: auto; */
+    /* display: inline; */
+}
+
+.display {
+    background-color: darkmagenta;
+    /* height: 50px; */
+    width: 33%;
+    height: 100%;
+    /* display: inline; */
+    margin: 0 auto;
+}
+.restart-container {
+    position: absolute;
+    background-color: darkorange;
+    width: 33%;
+    height: 100%;
+    right: 0%;
+    top: 0%
+}
+
+
+
+.game-board {
+    position: absolute;
+    margin: 10px;
+    background-color: rgb(245, 217, 180);
+    width: 50%;
+    height: 70%;
+    table-layout: fixed;
+    
+    box-sizing: content-box;
+    left: 25%;
+    top: 17%;
+    
+}
+
+td {
+    border: 1px solid grey;
+    width: 10%;
+    height: 44px;
+    /* padding: 1%; */
+    background-color: rgb(205, 226, 205);
+    color: rgb(41, 59, 221);
+    text-align: center;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.hidden {
+    color: transparent;
+    background-color: rgb(154, 154, 163) !important; 
+}
+
+
+
+.mark {
+    background-color: rgb(202, 45, 69)
+
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+footer {
+    position: absolute;
+    background-color: rgb(253, 240, 56);
+    width: 100%;
+    bottom: 0%;
+    max-height: 100px;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+.diff-btns button{
+    background-color: rgb(253, 246, 209);
+    box-sizing: content-box;
+    width: 17%;
+    height: 30px;
+    margin: 0px 10px;
+    cursor: pointer;
+    outline: none;
+    
+}

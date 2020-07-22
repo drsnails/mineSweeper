@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Mine Sweeper</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="init()">
+
+    <div class="game-container">
+        <header class="center">
+            <div class="hints ce"></div>
+            <div class="display"></div>
+            <div class="restart-container">
+                <button class="restart-btn" onclick="init()"><span>Restart</span></button>
+            </div>
+        </header>
+        <table class="game-board center">
+            <tbody class="game-cells"></tbody>
+        </table>
+        <footer>
+            <div class="diff-btns center">
+                <button class="easy-btn" onclick="setDifficulty(this)">Easy</button>
+                <button class="medium-btn" onclick="setDifficulty(this)">Medium</button>
+                <button class="hard-btn" onclick="setDifficulty(this)">Hard</button>
+            </div>
+        </footer>
+
+
+
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+
+</html>
