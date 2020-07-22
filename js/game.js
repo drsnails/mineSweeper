@@ -26,7 +26,6 @@ function init() {
     var elRestart = document.querySelector('.restart-container p .restart')
     elRestart.innerText = NORMAL
     elTime.innerText = '0.00'
-    gTime = Date.now()
     gGame.isOn = true
     gGame.shownCount = 0
     gGame.markedCount = 0
@@ -137,6 +136,7 @@ function cellClicked(ev, i, j) {
 
 
 function firstClick(firstPos) {
+    gTime = Date.now()
     gTimeInterval = setInterval(renderTime, 10)
     gBoard = createBoard()
     var cell = gBoard[firstPos.i][firstPos.j]
