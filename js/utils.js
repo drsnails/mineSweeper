@@ -40,6 +40,8 @@ function setDifficulty(elBtn) {
         gLevel.SIZE = 12;
         gLevel.MINES = 30
     }
+    gGame.shownCount = 0
+    gGame.markedCount = 0
     gBoard = createBoard()
     setMinesNegsCount()
     renderBoard()
@@ -78,7 +80,6 @@ function firstClick(firstPos) {
     setMines(firstPos)
     countMinesNegs()
     setMinesNegsCount()
-    console.log(gBoard);
     // renderBoard()
 }
 
@@ -143,16 +144,62 @@ function drawRandCell(cells) {
 }
 
 
-/////////////////////////////////////////////
-function getIdx(location) {
-    for (var idx = 0; idx < gGhosts.length; idx++) {
-        var ghost = gGhosts[idx]
-        if (ghost.location.i === location.i && ghost.location.j === location.j) {
-            return idx
+function expandShown(negsCoords, visited) {
+    console.log(negsCoords);
+    var nextNegsCoords = []
+    for (var i = 0; i < negsCoords.length; i++) {
+        var cellCoord = negsCoords[i]
+        // var currCell = gBoard[cellCoord.i][cellCoord.j]
+        var currNegsPos = getNegiboars(cellCoord.i, cellCoord.j)
+        for (var j = 0; j < currNegsPos.length; j++) {
+            var currNegPos = currNegsPos[j];
+            var negCell = gBoard[currNegPos.i][currNegPos.j]
+            if (negCell.minesAroundCount >= 0) {
+                negCell.isShown = true
+                if (!isVisited(currNegPos, visited) && negCell.minesAroundCount === 0) {
+                    visited.push(currNegPos)
+                    nextNegsCoords.push(currNegPos)
+                }
+            }
+
         }
     }
-    return -1
+    if (nextNegsCoords.length === 0) {
+        return
+    }
+    return expandShown(nextNegsCoords, visited);
 }
+
+function visitedCells() {
+
+}
+
+function getNegiboars(cellI, cellJ) {
+    var negsCoords = []
+    for (var i = cellI - 1; i <= cellI + 1; i++) {
+        if (i < 0 || i >= gLevel.SIZE) continue;
+        for (var j = cellJ - 1; j <= cellJ + 1; j++) {
+            // if (i === cellI && j === cellJ) continue;
+            if (j < 0 || j >= gLevel.SIZE) continue;
+            negsCoords.push({ i, j })
+        }
+    }
+    return negsCoords
+}
+
+
+function isVisited(location, visitedList) {
+    for (var idx = 0; idx < visitedList.length; idx++) {
+        var pos = visitedList[idx]
+        if (pos.i === location.i && pos.j === location.j) {
+            return true
+        }
+    }
+    return false
+}
+
+
+/////////////////////////////////////////////
 
 
 function getRandomColor() {

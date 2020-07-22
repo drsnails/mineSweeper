@@ -24,6 +24,7 @@ function init() {
     gGame.shownCount = 0
     gGame.markedCount = 0
     gLevel.SIZE = 4
+    gLevel.MINES = 2
     gBoard = createBoard()
     resetDiffBtnsColor()
     renderBoard()
@@ -97,23 +98,20 @@ function gameOver() {
 
 
 function cellClicked(ev, i, j) {
-    if (!gGame.isOn) return
-    
-    console.log(ev);
-    if (gGame.shownCount === 0) {
-        firstClick({i, j})
-    }
+    // console.log('cell clicked:', gBoard[i][j]);
     var cell = gBoard[i][j]
+    if (!gGame.isOn) return
     if (cell.isMarked) return
-
-    console.log(cell);
     if (cell.isMine) gameOver()
-    if (!cell.minesAroundCount) {
-
+    if (gGame.shownCount === 0) {
+        firstClick({ i, j })
     }
+    if (cell.minesAroundCount === 0) {
+        expandShown([{ i, j }], [])
+    }
+
     cell.isShown = true
     gGame.shownCount++
-    console.log(gGame.shownCount);
     renderBoard()
 }
 
@@ -127,6 +125,5 @@ function mark(i, j) {
         cell.isMarked = true
         gGame.markedCount++
     }
-    console.log(gGame.markedCount);
     renderBoard()
 }
