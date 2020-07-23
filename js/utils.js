@@ -52,7 +52,7 @@ function getRandomInt(min, max) {
 }
 
 
-function setMines(firstPos) {
+function setMinesFirst(firstPos) {
     var minesCoords = getMinesCoords(firstPos)
     for (var i = 0; i < minesCoords.length; i++) {
         var mineCoord = minesCoords[i]
@@ -93,20 +93,6 @@ function getAllCellsCoords() {
 function distance(pos1, pos2) {
     var dist = Math.sqrt((pos1.i - pos2.i) ** 2 + (pos1.j - pos2.j) ** 2)
     return dist
-}
-
-
-
-
-
-function drawRandCell(cells) {
-    var cellsLength = cells.length
-    for (var i = 0; i < cellsLength; i++) {
-        var randIdx = getRandomIntInclusive(0, cells.length - 1);
-        var randCell = cells.splice(randIdx, 1)[0];
-        return randCell
-    }
-
 }
 
 
@@ -161,33 +147,36 @@ function isVisited(location, visitedList) {
 }
 
 
-/////////////////////////////////////////////
-
-
-
-
-
-
-
-
-function getRandomColor() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+function showAllMineCells() {
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            var currCell = gBoard[i][j]
+            if (currCell.isMine) currCell.isShown = true
+        }
     }
-    return color;
 }
 
 
-
-function shuffle(nums) {
-    var numsLength = nums.length
-    var shuffledNums = [];
-    for (var i = 0; i < numsLength; i++) {
-        var randIdx = getRandomInt(0, nums.length);
-        var randNum = nums.splice(randIdx, 1)[0];
-        shuffledNums.push(randNum)
+function copyBoard() {
+    var newBoard = [];
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        newBoard[i] = [];
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            var newCell = copyObj(gBoard[i][j]);
+            newBoard[i].push(newCell)
+        }
     }
-    return shuffledNums
+    return newBoard;
+}
+
+
+function copyObj(obj) {
+    var copyObj = JSON.parse(JSON.stringify(obj))
+    return copyObj
+}
+
+function reAssignObjValues(mainObj, tempObj) {
+    for (var key in mainObj) {
+        mainObj[key] = tempObj[key]
+    }  
 }

@@ -10,7 +10,12 @@
 
     <div class="game-container">
         <header class="center">
-            <div class="hints"></div>
+            <div class="hints">
+                <span class="hint1" onclick="hintClickedHtml(this)">💡</span>
+                <span class="hint2" onclick="hintClickedHtml(this)">💡</span>
+                <span class="hint3" onclick="hintClickedHtml(this)">💡</span>
+                
+            </div>
             <div class="restart-container">
                 
                 <p><span class="restart" onclick="init()"> 😃</span></p>
@@ -19,6 +24,9 @@
                 <span class="time">Time: </span> <span class="value">0.00</span>
             </div>
         </header>
+        <div class="undo">
+            <button class="undo-btn" onclick="undoMove()">Undo</button>
+        </div>
         <table class="game-board center">
             <tbody class="game-cells"></tbody>
         </table>

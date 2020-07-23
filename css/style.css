@@ -5,13 +5,13 @@ body {
 }
 
 .game-container {
-    /* position: relative; */
+    position: relative;
     background-color: rgb(247, 233, 158);
     height: 100%;
 }
 
 header {
-    /* position: relative; */
+    position: relative;
     background-color: rgba(219, 118, 105, 0.452);
     border-radius: 10px;
     height: 80px;
@@ -22,11 +22,32 @@ header {
 .hints {
     /* background-color: crimson; */
     position: absolute;
-    width: 45%;
+    width: 25%;
     height: 100%;
-    /* margin: auto; */
-    /* display: inline; */
+    left: 10%;
+    top: 15%;
+    /* opacity: 90%; */
+    display: inline;
 }
+
+.hint1, .hint2, .hint3 {
+    /* background-color: blue; */
+    width: 500px;
+    margin: 0px 20px;
+    font-size: 32px;
+    padding-top: 6px;
+    border-radius: 50%;
+    transition: 0.15s;
+    opacity: 50%;
+    background-color: transparent;
+}
+
+.hint-mode {
+    opacity: 60%;
+    background-color: rgba(243, 227, 138, 0.781);
+}
+
+
 
 
 .restart-container {
@@ -34,7 +55,7 @@ header {
     position: relative;
     color: ivory;
     font-size: 50px;
-    width: 45%;
+    width: 20%;
     height: 100%;
     margin: 0 auto;
 }
@@ -54,6 +75,19 @@ header {
     top: 0%
 }
 
+.undo {
+    position: absolute;
+    right: 5%;
+    top: 100px;
+    
+}
+
+.undo-btn {
+    width: 140px;
+    height: 50px;
+    background-color: tomato;
+
+}
 
 
 .game-board {
@@ -73,7 +107,7 @@ header {
 td {
     border: 1px inset grey;
     width: 10%;
-    height: 44px;
+    height: 42px;
     background-color: rgb(205, 226, 205);
     color: rgb(41, 59, 221);
     text-align: center;
@@ -123,7 +157,7 @@ button {
     box-sizing: content-box;
     width: 10%;
     height: 35px;
-    margin: 20px 5%;
+    margin: 5px 5%;
     cursor: pointer;
     border-radius: 5px;
     
@@ -135,11 +169,7 @@ button {
 }
 
 button:hover {
-    background-color:  rgb(250, 232, 145);
+    background-color:  rgba(241, 111, 111, 0.945);
 }
 
-/* .diff-btns button:hover {
-    
-    width: 12%;
-    height: 38px;
-} */
+
