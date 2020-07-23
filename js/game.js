@@ -13,6 +13,7 @@ var gCorrectMarks;
 var gElHintClicked = null
 var gRecentBoards = []
 var gRecenGameStats = []
+var gIsManual = false
 
 var gLevel = {
     SIZE: 4,
@@ -27,6 +28,8 @@ var gGame = {
 
 
 
+// im sorry about the mess.. it was a hard problem and ill try to make it more readeble and nit on the weekend
+
 
 function init() {
     clearInterval(gTimeInterval)
@@ -34,8 +37,12 @@ function init() {
     gIsFirst = true
     gRecentBoards = []
     gRecenGameStats = []
+    gIsManual = false
     var elTime = document.querySelector('.display .value')
     var elRestart = document.querySelector('.restart-container p .restart')
+    var elManualBtn = document.querySelector('.manual-btn')
+    elManualBtn.style.display = ''
+    elManualBtn.innerText = 'Manual'
     elRestart.innerText = NORMAL
     elTime.innerText = '0.00'
     gGame.isOn = true
@@ -65,14 +72,14 @@ function renderBoard() {
             var cellContent = (cell.minesAroundCount) ? cell.minesAroundCount : ''
 
             if (!cell.isShown) cellClass += ' hidden'
-            if (cell.isMarked) {cellClass += ' mark'}
+            if (cell.isMarked) cellClass += ' mark';
             if (cell.isMine) {
                 cellClass += ' mine'
                 cellContent = MINE
                 strHtml += `style="background-color: red"`
             }
 
-            strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j})" 
+            strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j}), setMinesManual(this, ${i}, ${j})" 
             oncontextmenu="mark(${i},${j})">`
             // strHtml += cellContent
             strHtml += `${cellContent}</td>`
@@ -133,15 +140,20 @@ function gameOver(isWin) {
 
 function cellClicked(ev, i, j) {
     var cell = gBoard[i][j]
+    if (gIsManual) return
     if (!gGame.isOn) return
     if (cell.isMarked) return
     if (gElHintClicked) {
         return showHintCells(i, j)
     }
     if (cell.isMine) gameOver(false)
+
+    
+
     if (gIsFirst) {
         gIsFirst = false
         firstClick({ i, j })
+
     } else {
         gRecentBoards.push(copyBoard(gBoard))
         var gameCopy = copyObj(gGame)
@@ -183,12 +195,13 @@ function firstClick(firstPos) {
 function mark(i, j) {
     if (!gGame.isOn) return
     var cell = gBoard[i][j]
-
+    if (gIsFirst) return
     if (cell.isShown) return
     // adding for the Undo
     gRecentBoards.push(copyBoard(gBoard))
     var gameCopy = copyObj(gGame)
     gRecenGameStats.push(gameCopy)
+
     if (cell.isMarked) {
         cell.isMarked = false
         gGame.markedCount--
@@ -227,7 +240,6 @@ function setDifficulty(elBtn) {
     gGame.markedCount = 0
     gCorrectMarks = 0
     gBoard = createBoard()
-    setMinesNegsCount()
     renderBoard()
 }
 
@@ -257,6 +269,7 @@ function alowHintsFirstClick() {
 
     }
 }
+
 
 
 function showHintCells(cellI, cellJ) {
@@ -325,5 +338,50 @@ function undoMove() {
     reAssignObjValues(gGame, prevStats)
     console.log(gGame);
     renderBoard()
+}
+
+function startManual(elManualBtn) {
+    if (!gIsFirst) return
+    var elGameContainer = document.querySelector('.game-container')
+    if (gIsManual) {
+        elManualBtn.style.display = 'none'
+        gIsManual = false
+        elGameContainer.classList.toggle('manual-mode')
+        return initManualGame()
+        
+    } else {
+        elManualBtn.innerText = 'Start the game'
+        gIsManual = true
+        elGameContainer.classList.toggle('manual-mode')
+    }
+    
+}
+
+
+
+
+function setMinesManual(elCell, i, j) {
+    if (!gIsManual) return
+    console.log(elCell);
+    
+    var cell = gBoard[i][j]
+    cell.isMine = true
+    
+}
+
+
+function initManualGame() {
+    gIsFirst = false
+    gIsManual = false
+    alowHintsFirstClick()
+    countMinesNegs()
+    setMinesNegsCount()
+    // adding for the Undo
+    gRecentBoards.push(copyBoard(gBoard))
+    console.log(gBoard);
+    var gameCopy = copyObj(gGame)
+    gRecenGameStats.push(gameCopy)
+    gTime = Date.now()
+    gTimeInterval = setInterval(renderTime, 10)
 }
 

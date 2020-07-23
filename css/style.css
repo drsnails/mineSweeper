@@ -26,7 +26,6 @@ header {
     height: 100%;
     left: 10%;
     top: 15%;
-    /* opacity: 90%; */
     display: inline;
 }
 
@@ -75,15 +74,29 @@ header {
     top: 0%
 }
 
+.manual {
+    position: absolute;
+    width: 5%;
+    left: 10%;
+    top: 100px;
+}
+
+.manual-btn {
+    width: 150%;
+    height: 50px;
+    background-color: tomato;
+}
+
 .undo {
     position: absolute;
-    right: 5%;
+    right: 10%;
+    width: 5%;
     top: 100px;
     
 }
 
 .undo-btn {
-    width: 140px;
+    width: 150%;
     height: 50px;
     background-color: tomato;
 
@@ -164,6 +177,10 @@ button {
     
 }
 
+.manual-click {
+    border-color: 'red';
+}
+
 .diff-btns {
     min-width: 80px;
 }
@@ -172,4 +189,8 @@ button:hover {
     background-color:  rgba(241, 111, 111, 0.945);
 }
 
+.manual-mode {
+    background-color: lightblue;
+    z-index: 1;
+}
 
