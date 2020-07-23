@@ -7,6 +7,7 @@ body {
 .game-container {
     position: relative;
     background-color: rgb(247, 233, 158);
+    width: 100%;
     height: 100%;
 }
 
@@ -35,7 +36,7 @@ header {
     padding-top: 6px;
     border-radius: 50%;
     transition: 0.15s;
-    opacity: 50%;
+    opacity: 40%;
     background-color: transparent;
 }
 
@@ -130,7 +131,8 @@ td {
 
 .hidden {
     color: transparent;
-    background-color: rgb(154, 154, 163) !important; 
+    background-color: rgb(140, 140, 146) !important; 
+    
 }
 
 

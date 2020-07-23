@@ -35,7 +35,7 @@ function initHints() {
         }
         elHint.style.display = 'inline'
         elHint.style.cursor = 'auto'
-        elHint.style.opacity = 0.5
+        elHint.style.opacity = 0.4
     }
 }
 
@@ -83,7 +83,7 @@ function hideHintCells(shownCells) {
 
 function hintClickedHtml(elHint) {
     console.log(elHint);
-    if (gGame.shownCount === 0) return
+    if (gIsFirst) return
     var currHintName = elHint.className;
     if (gElHintClicked) {
         if (gElHintClicked.className === currHintName) {
