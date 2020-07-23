@@ -1,19 +1,23 @@
 body {
     background-color: rgb(240, 224, 200);
+    
     text-align: center;
     position: relative;
 }
 
 .game-container {
     position: relative;
-    background-color: rgb(247, 233, 158);
+    background-color: rgb(73, 160, 167);
+    
     width: 100%;
     height: 100%;
 }
 
 header {
+    color: rgb(32, 70, 77);
     position: relative;
-    background-color: rgba(219, 118, 105, 0.452);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgba(71, 206, 116, 0.452);
     border-radius: 10px;
     height: 80px;
     
@@ -25,11 +29,9 @@ header {
     left: 6%;
     top: 15%;
     display: inline;
-    /* width: 30%; */
 }
 
 .hint1, .hint2, .hint3 {
-    /* background-color: blue; */
     width: 500px;
     margin: 0px 10px;
     font-size: 32px;
@@ -49,9 +51,7 @@ header {
 
 
 .restart-container {
-    /* background-color: darkmagenta; */
     position: relative;
-    color: ivory;
     font-size: 50px;
     width: 20%;
     height: 100%;
@@ -66,7 +66,6 @@ header {
 .display {
     position: absolute;
     font-size: 30px;
-    /* background-color: darkorange; */
     width: 45%;
     height: 100%;
     left: 65%;
@@ -74,40 +73,41 @@ header {
 }
 
 .manual {
-    position: absolute;
+    margin: 8% 80%;
+    right: 12%;
     width: 5%;
-    left: 8%;
-    top: 100px;
+    /* top: 100px; */
+    
+    
 }
 
-.manual-btn {
-    width: 150%;
-    height: 50px;
-    font-size: 1rem;
-    background-color: tomato;
+.manual-btn, .undo-btn {
+    
+    min-width: 80px;
+    color: rgb(83, 79, 136);
+    margin: 5%;
+    height: 90px;
+    font-size: 1.2rem;
+    background-color: rgba(250, 133, 56, 0.842);
 }
+
+
 
 .undo {
-    position: absolute;
-    right: 10%;
+    
+    margin: 1.5% 80%;
+    right: 1%;
     width: 5%;
     top: 100px;
     
 }
 
-.undo-btn {
-    width: 150%;
-    height: 50px;
-    font-size: 1rem;
-    background-color: tomato;
-
-}
 
 
 .game-board {
     position: absolute;
     margin: 10px;
-    background-color: rgb(245, 217, 180);
+    background-color: rgb(60, 65, 62);
     width: 50%;
     height: 70%;
     table-layout: fixed;
@@ -119,11 +119,13 @@ header {
 }
 
 td {
-    border: 1px inset grey;
+    border: 0.1px ridge grey;
     width: 10%;
     height: 42px;
-    background-color: rgb(205, 226, 205);
-    color: rgb(41, 59, 221);
+    font-weight: bolder;
+    border-collapse: collapse;
+    background-color: rgb(176, 198, 238);
+    color: rgb(20, 45, 185);
     text-align: center;
     font-size: 1.5em;
     cursor: pointer;
@@ -131,10 +133,9 @@ td {
 
 .hidden {
     color: transparent;
-    background-color: rgb(140, 140, 146) !important; 
+    background-color: rgb(127, 127, 131) !important; 
     
 }
-
 
 
 .mark {
@@ -148,18 +149,19 @@ td {
 }
 
 
-
-
 footer {
     position: absolute;
-    /* background-color: rgb(253, 240, 56); */
     width: 100%;
     bottom: 0%;
-    /* max-height: 100px; */
 }
 
 button {
     cursor: pointer;
+    
+    font-weight: bold;
+    color: lightseagreen;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
     border-radius: 5px;
     outline: none;
     background-color: rgb(253, 246, 209);
@@ -170,15 +172,12 @@ button {
 .diff-btns button{
     background-color: rgb(253, 246, 209);
     box-sizing: content-box;
-    width: 10%;
+    min-width: 80px;
     height: 35px;
     margin: 5px 5%;
     cursor: pointer;
-    border-radius: 5px;
-    
-    
+    border-radius: 5px;   
 }
-
 
 
 .diff-btns {
@@ -186,22 +185,23 @@ button {
 }
 
 button:hover {
-    background-color:  rgba(241, 111, 111, 0.945);
+    background-color:  rgba(241, 206, 111, 0.945);
 }
 
 .open-manual {
-    position: relative;
-    font-size: 3rem;
-    left: 0%;
-    bottom: 5%;
+    font-size: 2.8rem;
+    position: absolute;
+    margin: 0;
     opacity: 50%;
-    color: rgb(89, 20, 155);
-    z-index: 1;
+    top: 85%;
+    left: 0%;
+    color: rgb(57, 12, 99);
+    z-index: 5;
     display: none;
 }
 
 .manual-mode {
-    background-color: lightblue;
-    z-index: 1;
+    background-color: rgb(255, 239, 194);
+    /* z-index: 5; */
 }
 

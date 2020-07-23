@@ -47,7 +47,7 @@ function init() {
     }
     var elOpenManual = document.querySelector('.open-manual')
     elOpenManual.style.display = 'none'
-    elManualBtn.style.display = ''
+    elManualBtn.style.display = 'block'
     elManualBtn.innerText = 'Manual'
     elRestart.innerText = NORMAL
     elTime.innerText = '0.00'
@@ -84,12 +84,11 @@ function renderBoard() {
             if (cell.isMine) {
                 cellClass += ' mine'
                 cellContent = MINE
-                strHtml += `style="background-color: red"`
+                strHtml += `style="background-color: rgb(241, 46, 12);"`
             }
 
             strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j}), setMinesManual(this, ${i}, ${j})" 
             oncontextmenu="mark(${i},${j})">`
-            // strHtml += cellContent
             strHtml += `${cellContent}</td>`
         }
         strHtml += '</tr>'
