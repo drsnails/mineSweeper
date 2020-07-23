@@ -36,6 +36,7 @@ function init() {
     gRecentBoards = []
     gRecenGameStats = []
     gIsManual = false
+    gElHintClicked = null
 
     ////// css stuff
     var elTime = document.querySelector('.display .value')

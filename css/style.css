@@ -34,7 +34,7 @@ header {
 .hint1, .hint2, .hint3 {
     width: 500px;
     margin: 0px 10px;
-    font-size: 32px;
+    font-size: 35px;
     padding-top: 6px;
     border-radius: 50%;
     transition: 0.15s;
@@ -159,7 +159,7 @@ button {
     cursor: pointer;
     
     font-weight: bold;
-    color: lightseagreen;
+    color: rgb(18, 121, 115);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 20px;
     border-radius: 5px;
