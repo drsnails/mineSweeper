@@ -157,6 +157,16 @@ function showAllMineCells() {
 }
 
 
+function hideAllCells() {
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            var currCell = gBoard[i][j]
+            currCell.isShown = false
+        }
+    }
+}
+
+
 function copyBoard() {
     var newBoard = [];
     for (var i = 0; i < gLevel.SIZE; i++) {

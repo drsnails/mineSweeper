@@ -178,7 +178,7 @@ button {
 }
 
 .manual-click {
-    border-color: 'red';
+    border-color: 'red' !important;
 }
 
 .diff-btns {

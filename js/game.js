@@ -73,6 +73,7 @@ function renderBoard() {
 
             if (!cell.isShown) cellClass += ' hidden'
             if (cell.isMarked) cellClass += ' mark';
+            if (cell.isManual) cellClass += ' manual-click';
             if (cell.isMine) {
                 cellClass += ' mine'
                 cellContent = MINE
@@ -110,7 +111,8 @@ function createCell(i, j) {
         minesAroundCount: 0,
         isShown: false,
         isMine: false,
-        isMarked: false
+        isMarked: false,
+        isManual: false
     }
 
     return cell
@@ -148,7 +150,7 @@ function cellClicked(ev, i, j) {
     }
     if (cell.isMine) gameOver(false)
 
-    
+
 
     if (gIsFirst) {
         gIsFirst = false
@@ -347,14 +349,17 @@ function startManual(elManualBtn) {
         elManualBtn.style.display = 'none'
         gIsManual = false
         elGameContainer.classList.toggle('manual-mode')
+        hideAllCells()
+        renderBoard()
         return initManualGame()
-        
+
     } else {
         elManualBtn.innerText = 'Start the game'
         gIsManual = true
         elGameContainer.classList.toggle('manual-mode')
+        
     }
-    
+
 }
 
 
@@ -363,10 +368,12 @@ function startManual(elManualBtn) {
 function setMinesManual(elCell, i, j) {
     if (!gIsManual) return
     console.log(elCell);
-    
+
     var cell = gBoard[i][j]
     cell.isMine = true
-    
+    cell.isShown = true
+    renderBoard()
+
 }
 
 
