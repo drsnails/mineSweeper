@@ -20,13 +20,11 @@ header {
 
 
 .hints {
-    /* background-color: crimson; */
     position: absolute;
-    width: 25%;
-    height: 100%;
     left: 10%;
     top: 15%;
     display: inline;
+    width: 25%;
 }
 
 .hint1, .hint2, .hint3 {
@@ -77,7 +75,7 @@ header {
 .manual {
     position: absolute;
     width: 5%;
-    left: 10%;
+    left: 8%;
     top: 100px;
 }
 
@@ -177,9 +175,7 @@ button {
     
 }
 
-.manual-click {
-    border-color: 'red' !important;
-}
+
 
 .diff-btns {
     min-width: 80px;
@@ -187,6 +183,17 @@ button {
 
 button:hover {
     background-color:  rgba(241, 111, 111, 0.945);
+}
+
+.open-manual {
+    position: relative;
+    font-size: 4em;
+    left: 0%;
+    top: 72%;
+    opacity: 50%;
+    color: rgb(89, 20, 155);
+    z-index: 5;
+    display: none;
 }
 
 .manual-mode {
