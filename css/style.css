@@ -191,12 +191,12 @@ button:hover {
 
 .open-manual {
     position: relative;
-    font-size: 4em;
+    font-size: 3rem;
     left: 0%;
-    top: 72%;
+    bottom: 5%;
     opacity: 50%;
     color: rgb(89, 20, 155);
-    z-index: 5;
+    z-index: 1;
     display: none;
 }
 

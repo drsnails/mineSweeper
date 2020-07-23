@@ -36,6 +36,8 @@ function init() {
     gRecentBoards = []
     gRecenGameStats = []
     gIsManual = false
+
+    ////// css stuff
     var elTime = document.querySelector('.display .value')
     var elRestart = document.querySelector('.restart-container p .restart')
     var elManualBtn = document.querySelector('.manual-btn')
@@ -49,6 +51,8 @@ function init() {
     elManualBtn.innerText = 'Manual'
     elRestart.innerText = NORMAL
     elTime.innerText = '0.00'
+    //////////////////
+
     gGame.isOn = true
     gGame.shownCount = 0
     gGame.markedCount = 0
@@ -77,7 +81,6 @@ function renderBoard() {
 
             if (!cell.isShown) cellClass += ' hidden'
             if (cell.isMarked) cellClass += ' mark';
-            if (cell.isManual) cellClass += ' manual-click';
             if (cell.isMine) {
                 cellClass += ' mine'
                 cellContent = MINE
@@ -116,7 +119,6 @@ function createCell(i, j) {
         isShown: false,
         isMine: false,
         isMarked: false,
-        isManual: false
     }
 
     return cell
@@ -205,7 +207,6 @@ function mark(i, j) {
     var cell = gBoard[i][j]
     if (gIsFirst) return
     if (cell.isShown) return
-    
     // adding for the Undo
     gRecentBoards.push(copyBoard(gBoard))
     var gameCopy = copyObj(gGame)

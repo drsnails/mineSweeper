@@ -1,6 +1,3 @@
-
-
-
 function setDifficulty(elBtn) {
     if (!gGame.isOn || gGame.shownCount > 0) return
     toggleDiffBtnsColor(elBtn)

@@ -127,7 +127,6 @@ function getNegiboars(cellI, cellJ) {
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         if (i < 0 || i >= gLevel.SIZE) continue;
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-            // if (i === cellI && j === cellJ) continue;
             if (j < 0 || j >= gLevel.SIZE) continue;
             negsCoords.push({ i, j })
         }
@@ -164,6 +163,7 @@ function hideAllCells() {
             currCell.isShown = false
         }
     }
+    renderBoard()
 }
 
 
