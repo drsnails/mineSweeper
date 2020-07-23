@@ -21,16 +21,16 @@ header {
 
 .hints {
     position: absolute;
-    left: 10%;
+    left: 6%;
     top: 15%;
     display: inline;
-    width: 25%;
+    /* width: 30%; */
 }
 
 .hint1, .hint2, .hint3 {
     /* background-color: blue; */
     width: 500px;
-    margin: 0px 20px;
+    margin: 0px 10px;
     font-size: 32px;
     padding-top: 6px;
     border-radius: 50%;
@@ -68,8 +68,8 @@ header {
     /* background-color: darkorange; */
     width: 45%;
     height: 100%;
-    right: 0%;
-    top: 0%
+    left: 65%;
+    top: 13%
 }
 
 .manual {
@@ -82,6 +82,7 @@ header {
 .manual-btn {
     width: 150%;
     height: 50px;
+    font-size: 1rem;
     background-color: tomato;
 }
 
@@ -96,6 +97,7 @@ header {
 .undo-btn {
     width: 150%;
     height: 50px;
+    font-size: 1rem;
     background-color: tomato;
 
 }
