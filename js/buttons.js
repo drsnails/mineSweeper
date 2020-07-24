@@ -100,7 +100,11 @@ function hintClickedHtml(elHint) {
 
 
 function undoMove() {
-    if (gRecentBoards.length === 0 || !gGame.isOn) return
+    if (gIsFirst) return
+    if (!gGame.isOn) {
+        var elRestart = document.querySelector('.restart-container p .restart')
+        elRestart.innerText = NORMAL
+    }
     var prevMove = gRecentBoards.pop()
     var prevStats = gRecenGameStats.pop()
     for (var i = 0; i < gLevel.SIZE; i++) {
@@ -110,9 +114,9 @@ function undoMove() {
             reAssignObjValues(currCell, prevCell)
         }
     }
-
+    
     reAssignObjValues(gGame, prevStats)
-    console.log(gGame);
+    
     renderBoard()
 }
 

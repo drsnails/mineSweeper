@@ -105,14 +105,11 @@ function expandShown(negsCoords, visited) {
         for (var j = 0; j < currNegsPos.length; j++) {
             var currNegPos = currNegsPos[j];
             var negCell = gBoard[currNegPos.i][currNegPos.j]
-            if (negCell.isMarked) continue
-            if (negCell.minesAroundCount >= 0) {
-                negCell.isShown = true
-                
-                if (!isVisited(currNegPos, visited) && negCell.minesAroundCount === 0) {
-                    visited.push(currNegPos)
-                    nextNegsCoords.push(currNegPos)
-                }
+            if (negCell.isShown || negCell.isMarked || negCell.isMine) continue
+            gGame.shownCount++
+            negCell.isShown = (negCell.minesAroundCount >= 0) ? true : false
+            if (negCell.minesAroundCount === 0) {
+                nextNegsCoords.push(currNegPos)
             }
         }
     }
@@ -190,5 +187,5 @@ function copyObj(obj) {
 function reAssignObjValues(mainObj, tempObj) {
     for (var key in mainObj) {
         mainObj[key] = tempObj[key]
-    }  
+    }
 }

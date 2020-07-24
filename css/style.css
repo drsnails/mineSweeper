@@ -205,3 +205,6 @@ button:hover {
     /* z-index: 5; */
 }
 
+::selection {
+    background-color: transparent;
+}

@@ -14,6 +14,7 @@ var gElHintClicked = null
 var gRecentBoards = []
 var gRecenGameStats = []
 var gIsManual = false
+var gVisited;
 
 var gLevel = {
     SIZE: 4,
@@ -37,6 +38,7 @@ function init() {
     gRecenGameStats = []
     gIsManual = false
     gElHintClicked = null
+    gVisited = []
 
     ////// css stuff
     var elTime = document.querySelector('.display .value')
@@ -126,10 +128,12 @@ function createCell(i, j) {
 
 
 function cellClicked(ev, i, j) {
+
     var cell = gBoard[i][j]
     if (gIsManual) return
     if (!gGame.isOn) return
     if (cell.isMarked) return
+    if (cell.isShown) return
     if (gElHintClicked) {
         return showHintCells(i, j)
     }
@@ -150,12 +154,14 @@ function cellClicked(ev, i, j) {
 
     if (cell.minesAroundCount === 0) {
         expandShown([{ i, j }], [])
+    } else {
+        gGame.shownCount++
     }
 
     cell.isShown = true
-    gGame.shownCount++
     gElHintClicked = null
     renderBoard()
+    if (winCheck()) return gameOver(true)
 }
 
 
@@ -174,7 +180,6 @@ function firstClick(firstPos) {
 
     // adding for the Undo
     gRecentBoards.push(copyBoard(gBoard))
-    console.log(gBoard);
     var gameCopy = copyObj(gGame)
     gRecenGameStats.push(gameCopy)
 }
@@ -187,7 +192,9 @@ function winCheck() {
             if (!(cell.isMarked === cell.isMine)) return false
         }
     }
-    return true
+    if (gGame.shownCount === (gLevel.SIZE**2 - gLevel.MINES)) {
+        return true
+    }
 }
 
 
