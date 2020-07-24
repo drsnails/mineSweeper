@@ -85,7 +85,7 @@ header {
     
     min-width: 80px;
     color: rgb(83, 79, 136);
-    margin: 5%;
+    margin-top: 0px;
     height: 90px;
     font-size: 1.2rem;
     background-color: rgba(250, 133, 56, 0.842);
@@ -101,6 +101,39 @@ header {
     top: 100px;
     
 }
+
+.safe-click {
+    position: relative;
+    background-color: rgb(201, 84, 63);
+    width: 20%;
+    top: 4px;
+    padding: 0;
+}
+
+.safe-btn {
+    position: absolute;
+    background-color: rgb(94, 195, 235);
+    color: rgb(238, 63, 32);
+    margin-top: 5%;
+    width: fit-content;
+    padding: 15px;
+    height: 80px;
+    left: 25%;
+    border-radius: 40px;
+    /* border-style: groove; */
+    border-color: tomato;
+    border-width: 1.3px;
+}
+
+
+
+.safe-btn span {
+    background-color: tomato;
+    font-size: 25px;
+    border-radius: 10px;
+    color: rgb(81, 214, 255);
+}
+
 
 
 
@@ -208,3 +241,8 @@ button:hover {
 ::selection {
     background-color: transparent;
 }
+
+.safe-btn:hover {
+    background-color: rgb(53, 211, 250);
+}
+
