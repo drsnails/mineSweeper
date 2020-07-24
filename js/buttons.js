@@ -79,7 +79,6 @@ function hideHintCells(shownCells) {
 
 
 function hintClickedHtml(elHint) {
-    console.log(elHint);
     if (gIsFirst) return
     var currHintName = elHint.className;
     if (gElHintClicked) {
@@ -104,7 +103,10 @@ function undoMove() {
     if (!gGame.isOn) {
         var elRestart = document.querySelector('.restart-container p .restart')
         elRestart.innerText = NORMAL
+        gGame.isOn = true
     }
+    var currTime = gGame.secsPassed
+    console.log(currTime);
     var prevMove = gRecentBoards.pop()
     var prevStats = gRecenGameStats.pop()
     for (var i = 0; i < gLevel.SIZE; i++) {
@@ -116,7 +118,8 @@ function undoMove() {
     }
     
     reAssignObjValues(gGame, prevStats)
-    
+    gTime += (currTime - gGame.secsPassed)*1000
+
     renderBoard()
 }
 
@@ -135,6 +138,7 @@ function startManual(elManualBtn) {
         return initManualGame()
 
     } else {
+        gLevel.MINES = 0
         elOpenManual.style.display = 'block'
         elManualBtn.innerText = 'Start the game'
         gIsManual = true

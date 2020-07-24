@@ -7,7 +7,7 @@ const HINT = "💡"
 
 var gIsFirst = true
 var gBoard;
-var gTime;
+var gTime = 0
 var gTimeInterval;
 var gCorrectMarks;
 var gElHintClicked = null
@@ -31,7 +31,6 @@ var gGame = {
 
 
 function init() {
-    clearInterval(gTimeInterval)
     initHints()
     gIsFirst = true
     gRecentBoards = []
@@ -39,7 +38,8 @@ function init() {
     gIsManual = false
     gElHintClicked = null
     gVisited = []
-
+    
+    clearInterval(gTimeInterval)
     ////// css stuff
     var elTime = document.querySelector('.display .value')
     var elRestart = document.querySelector('.restart-container p .restart')
@@ -59,6 +59,7 @@ function init() {
     gGame.isOn = true
     gGame.shownCount = 0
     gGame.markedCount = 0
+    
     gGame.secsPassed = 0
     gCorrectMarks = 0
     gLevel.SIZE = 4
@@ -90,7 +91,7 @@ function renderBoard() {
                 strHtml += `style="background-color: rgb(241, 46, 12);"`
             }
 
-            strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j}), setMinesManual(this, ${i}, ${j})" 
+            strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j}), setMinesManual(${i}, ${j})" 
             oncontextmenu="mark(${i},${j})">`
             strHtml += `${cellContent}</td>`
         }
@@ -243,13 +244,13 @@ function renderTime() {
 
 
 
-function setMinesManual(elCell, i, j) {
+function setMinesManual(i, j) {
     if (!gIsManual) return
-    console.log(elCell);
-
     var cell = gBoard[i][j]
+    gLevel.MINES++
     cell.isMine = true
     cell.isShown = true
+    gLevel.MINES
     renderBoard()
 
 }
@@ -266,6 +267,7 @@ function initManualGame() {
     console.log(gBoard);
     var gameCopy = copyObj(gGame)
     gRecenGameStats.push(gameCopy)
+    console.log(gLevel);
     gTime = Date.now()
     gTimeInterval = setInterval(renderTime, 10)
 }
