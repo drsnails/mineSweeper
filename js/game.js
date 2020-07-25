@@ -22,7 +22,9 @@ var gIsManual = false
 var gVisited;
 var gSafeClicksLeft;
 
-
+// localStorage.setItem('level4', [])
+// localStorage.setItem('level8', [])
+// localStorage.setItem('level12', [])
 
 
 var gLevel = {
