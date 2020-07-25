@@ -193,11 +193,15 @@ td {
 }
 .scores-head {
     position: absolute;
-    width: 10%;
-    color: wheat;
+    width: 15%;
+    color: rgb(255, 241, 218);
     text-align: left;
-    bottom: 20%;
+    left: 0%;
+    bottom: 0%;
+    font-weight: bold;
 }
+
+
 
 ol {
     position: absolute;
@@ -207,9 +211,15 @@ ol {
 }
 
 li {
-    color: wheat;
-    width: 80%;
+    color: rgb(255, 241, 218);
+    width: 70%;
+    text-align: center;
+    margin-left: 10px;
     
+}
+
+.scores-head, li {
+    font-family: monospace;
 }
 
 
