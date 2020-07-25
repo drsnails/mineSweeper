@@ -45,6 +45,7 @@ function init() {
 
     initHints()
     initSafeClickBtn()
+    resetDiffBtnsColor()
     gIsFirst = true
     gIsManual = false
     gElHintClicked = null
@@ -79,10 +80,8 @@ function init() {
 
 
     gBoard = createBoard()
-    resetDiffBtnsColor()
     gRecentBoards = [copyBoard(gBoard)]
     gRecenGameStats = []
-    initSafeClickBtn()
     renderBoard()
 }
 

@@ -30,9 +30,11 @@ function toggleDiffBtnsColor(elBtn) {
     for (var i = 0; i < elDiffBtns.length; i++) {
         if (elDiffBtns[i].className === elBtn.className) {
             elDiffBtns[i].style.backgroundColor = 'rgb(155, 200, 243)';
+            elDiffBtns[i].style.borderColor = 'rgb(155, 200, 243)'
 
         } else {
             elDiffBtns[i].style.backgroundColor = 'rgb(253, 246, 209)';
+            elDiffBtns[i].style.borderColor = ''
         }
     }
 }
