@@ -7,6 +7,8 @@ const HINT = "💡"
 const FLAG = "🚩"
 var gIsUndo = false
 
+var gLiGaps = 10
+
 var gName = '@4stav'
 var gEasyBetScores = []
 
@@ -339,7 +341,7 @@ function renderBestScores(level) {
     scoresArray.sort(function (a, b) { return parseFloat(a) - parseFloat(b) })
     elOl.innerHTML = ''
     for (var i = 1; i < scoresArray.length; i++) {
-        elOl.innerHTML += `<li>  ${scoresArray[i]}s`
+        elOl.innerHTML += `<li style="top: ${20*i}"px>  ${scoresArray[i]}s`
         elOl.innerHTML += `</li> `
 
     }

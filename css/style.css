@@ -197,7 +197,7 @@ td {
     color: rgb(255, 241, 218);
     text-align: left;
     
-    right: 20px;
+    right: 70px;
     width: 70px;
     bottom: 25%;
     font-weight: bold;
@@ -212,7 +212,8 @@ ol {
 }
 
 li {
-    position: sticky;
+    position: absolute;
+    margin-top: 0%;
     color: rgb(255, 241, 218);
     width: 10%;
     text-align: left;
