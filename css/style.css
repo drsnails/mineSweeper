@@ -189,14 +189,14 @@ td {
 
 .best-scores {
     position: relative;
-    bottom: 100px;
+    bottom: 150px;
 }
 .scores-head {
     position: absolute;
     width: 10%;
     color: wheat;
     text-align: left;
-    bottom: 10%;
+    bottom: 20%;
 }
 
 ol {
