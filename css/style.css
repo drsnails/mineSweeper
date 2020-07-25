@@ -144,8 +144,6 @@ header {
     width: 50%;
     height: 70%;
     table-layout: fixed;
-    
-    box-sizing: content-box;
     left: 25%;
     top: 12%;
     
@@ -201,6 +199,7 @@ td {
     width: 70px;
     bottom: 25%;
     font-weight: bold;
+    display: none;
 }
 
 
@@ -209,6 +208,7 @@ ol {
     position: sticky;
     width: 0%;
     left: 0%;
+    display: none;
 }
 
 li {
@@ -218,6 +218,7 @@ li {
     width: 10%;
     text-align: left;
     right: 110px;
+    display: none;
     
 }
 
