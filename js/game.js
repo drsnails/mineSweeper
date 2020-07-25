@@ -5,6 +5,8 @@ const DEAD = "😵"
 const MINE = "&#128163"
 const HINT = "💡"
 
+var gEasyBetScores = []
+
 var gIsFirst = true
 var gBoard;
 var gTime = 0
@@ -88,8 +90,12 @@ function renderBoard() {
             var cell = board[i][j];
             var cellClass = '';
             var cellContent = (cell.minesAroundCount) ? cell.minesAroundCount : ''
-
-            if (!cell.isShown) cellClass += ' hidden'
+            var numColor = 'transparent'
+            if (!cell.isShown) {
+                cellClass += ' hidden'
+            } else {
+                var numColor = getNumberColor(cellContent)
+            }
             if (cell.isMarked) cellClass += ' mark';
             if (cell.isMine) {
                 cellClass += ' mine'
@@ -97,8 +103,9 @@ function renderBoard() {
                 strHtml += `style="background-color: rgb(241, 46, 12);"`
             }
 
+
             strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j}), setMinesManual(${i}, ${j})" 
-            oncontextmenu="mark(${i},${j})">`
+            oncontextmenu="mark(${i},${j})" style="color: ${numColor};">`
             strHtml += `${cellContent}</td>`
         }
         strHtml += '</tr>'
@@ -212,7 +219,20 @@ function gameOver(isWin) {
     gGame.isOn = false
     console.log("Game Over!")
     var elRestart = document.querySelector('.restart-container p .restart')
-    elRestart.innerText = (isWin) ? WIN : DEAD
+    if (isWin) {
+        elRestart.innerText = WIN
+        switch (gLevel.SIZE) {
+            case 2:
+                gEasyBetScores.push(gGame.secsPassed)
+                break;
+        
+            default:
+                break;
+        }
+
+    } else {
+        elRestart.innerText = DEAD
+    }
     gGame.isOn = false
 }
 

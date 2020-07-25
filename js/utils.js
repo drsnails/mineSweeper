@@ -189,3 +189,26 @@ function reAssignObjValues(mainObj, tempObj) {
         mainObj[key] = tempObj[key]
     }
 }
+
+function getNumberColor(num) {
+    switch (num) {
+        case 1:
+            return 'blue'
+        case 2:
+            return 'green'
+        case 3:
+            return 'red'
+        case 4:
+            return 'purple'
+        case 5:
+            return 'maroon'
+        case 6:
+            return 'rgb(25, 182, 166)'
+        case 7:
+            return 'black'
+        case 8:
+            return 'gray'
+        default:
+            return 'blue';
+    }
+}

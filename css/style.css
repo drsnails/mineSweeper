@@ -172,13 +172,37 @@ td {
 
 
 .mark {
-    background-color: rgb(202, 45, 69) !important
-
+    background-color: rgb(202, 45, 69) !important;
 }
 
 .center {
     margin-left: auto;
     margin-right: auto;
+}
+
+.best-scores {
+    position: relative;
+    bottom: 100px;
+}
+.scores-head {
+    position: absolute;
+    width: 10%;
+    color: wheat;
+    text-align: left;
+    bottom: 10%;
+}
+
+ol {
+    position: absolute;
+    width: 10%;
+    margin-left: 0px;
+    padding-left: 1.2%;
+}
+
+li {
+    color: wheat;
+    width: 50%;
+    
 }
 
 

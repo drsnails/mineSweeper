@@ -154,9 +154,9 @@ function startSafeClick(elSafeBtn) {
     if (gIsFirst) return
     if (gIsManual) return
     if (gSafeClicksLeft === 0) return
-    gSafeClicksLeft--
     var randSafeCell = getRandSafeCell()
     if (!randSafeCell) return
+    gSafeClicksLeft--
     showSafeCell(randSafeCell)
     renderSafeClickBtn(elSafeBtn)
 
@@ -170,7 +170,7 @@ function showSafeCell(safeCell) {
     setTimeout(function () {
         safeCell.isShown = false
         renderBoard()
-    }, 1000)
+    }, 800)
 }
 
 
