@@ -1,9 +1,10 @@
 'use strict'
-const NORMAL = '😃'
+const NORMAL = "😃"
 const WIN = "😎"
 const DEAD = "😵"
 const MINE = "&#128163"
 const HINT = "💡"
+const FLAG = "🚩"
 
 var gEasyBetScores = []
 
@@ -90,20 +91,30 @@ function renderBoard() {
             var cell = board[i][j];
             var cellClass = '';
             var cellContent = (cell.minesAroundCount) ? cell.minesAroundCount : ''
-            var numColor = 'transparent'
+
+            if (cell.isMine) {
+                cellClass += ' mine'
+                cellContent = MINE   
+            }
+
+            if (cell.isMarked && !cell.isShown) {
+                numColor = 'blue'
+                cellContent = FLAG
+                cellClass += ' mark'
+                
+            } else {
+                var numColor = 'transparent'
+            }
+
             if (!cell.isShown) {
                 cellClass += ' hidden'
             } else {
                 var numColor = getNumberColor(cellContent)
             }
-            if (cell.isMarked) cellClass += ' mark';
-            if (cell.isMine) {
-                cellClass += ' mine'
-                cellContent = MINE
-                strHtml += `style="background-color: rgb(241, 46, 12);"`
-            }
-
-
+            
+            
+            
+            
             strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j}), setMinesManual(${i}, ${j})" 
             oncontextmenu="mark(${i},${j})" style="color: ${numColor};">`
             strHtml += `${cellContent}</td>`
@@ -238,14 +249,14 @@ function gameOver(isWin) {
 
 
 function mark(i, j) {
+    gRecentBoards.push(copyBoard(gBoard))
+    var gameCopy = copyObj(gGame)
+    gRecenGameStats.push(gameCopy)
     if (!gGame.isOn) return
     var cell = gBoard[i][j]
     if (gIsFirst) return
     if (cell.isShown) return
     // adding for the Undo
-    gRecentBoards.push(copyBoard(gBoard))
-    var gameCopy = copyObj(gGame)
-    gRecenGameStats.push(gameCopy)
 
     if (cell.isMarked) {
         cell.isMarked = false

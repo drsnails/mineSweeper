@@ -170,9 +170,16 @@ td {
     
 }
 
+.mine {
+    background-color: rgb(241, 46, 12);
+}
+
 
 .mark {
-    background-color: rgb(202, 45, 69) !important;
+    background-color: rgba(175, 158, 150, 0.836) !important;
+    font-size: 30px;
+    padding: 0px;
+    margin: 0px
 }
 
 .center {
