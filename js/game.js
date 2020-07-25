@@ -15,6 +15,8 @@ var gRecentBoards = []
 var gRecenGameStats = []
 var gIsManual = false
 var gVisited;
+var gSafeClicksLeft;
+
 
 var gLevel = {
     SIZE: 4,
@@ -32,12 +34,20 @@ var gGame = {
 
 function init() {
     initHints()
+    initSafeClickBtn()
     gIsFirst = true
-    gRecentBoards = []
-    gRecenGameStats = []
     gIsManual = false
     gElHintClicked = null
+    gCorrectMarks = 0
     gVisited = []
+    gGame.isOn = true
+    gGame.shownCount = 0
+    gGame.markedCount = 0
+    gSafeClicksLeft = 3
+    gGame.secsPassed = 0
+    
+    gLevel.SIZE = 4
+    gLevel.MINES = 2
     
     clearInterval(gTimeInterval)
     ////// css stuff
@@ -56,16 +66,12 @@ function init() {
     elTime.innerText = '0.00'
     //////////////////
 
-    gGame.isOn = true
-    gGame.shownCount = 0
-    gGame.markedCount = 0
     
-    gGame.secsPassed = 0
-    gCorrectMarks = 0
-    gLevel.SIZE = 4
-    gLevel.MINES = 2
     gBoard = createBoard()
     resetDiffBtnsColor()
+    gRecentBoards = [copyBoard(gBoard)]
+    gRecenGameStats = []
+    initSafeClickBtn()
     renderBoard()
 }
 
@@ -171,7 +177,8 @@ function firstClick(firstPos) {
     elManualBtn.style.display = 'none'
     gTime = Date.now()
     gTimeInterval = setInterval(renderTime, 10)
-    alowHintsFirstClick()
+    allowHints()
+    allowSafeClick()
     gBoard = createBoard()
     var cell = gBoard[firstPos.i][firstPos.j]
     if (cell.isMine) gameOver(false)
@@ -259,7 +266,8 @@ function setMinesManual(i, j) {
 function initManualGame() {
     gIsFirst = false
     gIsManual = false
-    alowHintsFirstClick()
+    allowHints()
+    allowSafeClick()
     countMinesNegs()
     setMinesNegsCount()
     // adding for the Undo

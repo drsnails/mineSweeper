@@ -1,5 +1,5 @@
 function setDifficulty(elBtn) {
-    if (!gGame.isOn || gGame.shownCount > 0) return
+    if (!gGame.isOn || gGame.shownCount > 0 || gGame.secsPassed>0) return
     toggleDiffBtnsColor(elBtn)
     var btnClassName = elBtn.className
     if (btnClassName === 'easy-btn') {
@@ -36,7 +36,7 @@ function initHints() {
     }
 }
 
-function alowHintsFirstClick() {
+function allowHints() {
     var elHints = document.querySelectorAll('.hints span');
     for (var i = 0; i < elHints.length; i++) {
         var elHint = elHints[i]
@@ -100,6 +100,7 @@ function hintClickedHtml(elHint) {
 
 function undoMove() {
     if (gIsFirst) return
+    if (gGame.shownCount === 0) return
     if (!gGame.isOn) {
         var elRestart = document.querySelector('.restart-container p .restart')
         elRestart.innerText = NORMAL
@@ -109,6 +110,7 @@ function undoMove() {
     console.log(currTime);
     var prevMove = gRecentBoards.pop()
     var prevStats = gRecenGameStats.pop()
+    reAssignObjValues(gGame, prevStats)
     for (var i = 0; i < gLevel.SIZE; i++) {
         for (var j = 0; j < gLevel.SIZE; j++) {
             var prevCell = prevMove[i][j]
@@ -116,10 +118,9 @@ function undoMove() {
             reAssignObjValues(currCell, prevCell)
         }
     }
-    
-    reAssignObjValues(gGame, prevStats)
-    gTime += (currTime - gGame.secsPassed)*1000
 
+    gTime += (currTime - gGame.secsPassed) * 1000
+    var elSafeClickBtn = document.querySelector('.safe-click')
     renderBoard()
 }
 
@@ -127,7 +128,7 @@ function startManual(elManualBtn) {
     if (!gIsFirst) return
     var elGameContainer = document.querySelector('.game-container')
     var elOpenManual = document.querySelector('.open-manual')
-    
+
     if (gIsManual) {
         elOpenManual.style.display = 'none'
         elManualBtn.style.display = 'none'
@@ -143,7 +144,74 @@ function startManual(elManualBtn) {
         elManualBtn.innerText = 'Start the game'
         gIsManual = true
         elGameContainer.classList.toggle('manual-mode')
-        
+
     }
+
+}
+
+function startSafeClick(elSafeBtn) {
+    if (!gGame.isOn) return
+    if (gIsFirst) return
+    if (gIsManual) return
+    if (gSafeClicksLeft === 0) return
+    gSafeClicksLeft--
+    var randSafeCell = getRandSafeCell()
+    if (!randSafeCell) return
+    showSafeCell(randSafeCell)
+    renderSafeClickBtn(elSafeBtn)
+
+
+}
+
+
+function showSafeCell(safeCell) {
+    safeCell.isShown = true
+    renderBoard()
+    setTimeout(function () {
+        safeCell.isShown = false
+        renderBoard()
+    }, 1000)
+}
+
+
+
+
+
+function getRandSafeCell() {
+    var safeCells = []
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[0].length; j++) {
+            var currCell = gBoard[i][j]
+            if (!currCell.isShown && !currCell.isMine && !currCell.isMarked) {
+                safeCells.push(currCell)
+            }
+        }
+    }
+    if (safeCells.length === 0) return null
+    var randIdx = getRandomInt(0, safeCells.length);
+    return safeCells[randIdx]
+}
+
+function renderSafeClickBtn(elSafeBtn) {
+    var elClicksLeftSpan = elSafeBtn.querySelector('span')
+    var opacity = (gSafeClicksLeft === 0)?'0.4':'1'
+    elSafeBtn.style.opacity = opacity
+    elClicksLeftSpan.innerText = gSafeClicksLeft
+}
+
+function initSafeClickBtn() {
+    var elSafeBtn = document.querySelector('.safe-btn')
+    elSafeBtn.style.opacity = '0.4'
+    var elClicksLeftSpan = elSafeBtn.querySelector('span')
+    elClicksLeftSpan.innerText = '3'
+    elSafeBtn.style.cursor = 'auto'
+}
+
+function allowSafeClick() {
+    var elSafeBtn = document.querySelector('.safe-btn')
+    var elClicksLeftSpan = elSafeBtn.querySelector('span')
+    elSafeBtn.style.opacity = '1'
+    elClicksLeftSpan.innerText = '3'
+    elSafeBtn.style.cursor = 'pointer'
 
 }
