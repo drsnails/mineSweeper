@@ -206,13 +206,13 @@ td {
 
 
 ol {
-    position: absolute;
+    position: sticky;
     width: 0%;
     left: 0%;
 }
 
 li {
-    position: relative;
+    position: sticky;
     color: rgb(255, 241, 218);
     width: 10%;
     text-align: left;
