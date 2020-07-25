@@ -97,7 +97,7 @@ function distance(pos1, pos2) {
 
 
 // sorry about that
-function expandShown(negsCoords, visited) {
+function expandShown(negsCoords) {
     var nextNegsCoords = []
     for (var i = 0; i < negsCoords.length; i++) {
         var cellCoord = negsCoords[i]
@@ -116,7 +116,7 @@ function expandShown(negsCoords, visited) {
     if (nextNegsCoords.length === 0) {
         return
     }
-    return expandShown(nextNegsCoords, visited);
+    return expandShown(nextNegsCoords);
 }
 
 
@@ -201,7 +201,7 @@ function getNumberColor(num) {
         case 4:
             return 'purple'
         case 5:
-            return 'maroon'
+            return 'brown'
         case 6:
             return 'rgb(25, 182, 166)'
         case 7:

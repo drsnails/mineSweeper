@@ -99,6 +99,7 @@ function hintClickedHtml(elHint) {
 
 
 function undoMove() {
+    console.log();
     if (gIsFirst) return
     if (gGame.shownCount === 0) return
     if (!gGame.isOn) {

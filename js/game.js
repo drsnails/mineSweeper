@@ -108,14 +108,13 @@ function renderBoard() {
 
             if (!cell.isShown) {
                 cellClass += ' hidden'
+                
             } else {
                 var numColor = getNumberColor(cellContent)
             }
             
-            
-            
-            
-            strHtml += `class="cell ${cellClass}" onclick="cellClicked(event, ${i}, ${j}), setMinesManual(${i}, ${j})" 
+            strHtml += `class="cell ${cellClass}" 
+            onclick="cellClicked(event, ${i}, ${j}), setMinesManual(${i}, ${j})" 
             oncontextmenu="mark(${i},${j})" style="color: ${numColor};">`
             strHtml += `${cellContent}</td>`
         }
@@ -153,7 +152,7 @@ function createCell(i, j) {
 
 
 function cellClicked(ev, i, j) {
-
+    
     var cell = gBoard[i][j]
     if (gIsManual) return
     if (!gGame.isOn) return
@@ -178,7 +177,7 @@ function cellClicked(ev, i, j) {
 
 
     if (cell.minesAroundCount === 0) {
-        expandShown([{ i, j }], [])
+        expandShown([{ i, j }])
     } else {
         gGame.shownCount++
     }
@@ -232,6 +231,7 @@ function gameOver(isWin) {
     var elRestart = document.querySelector('.restart-container p .restart')
     if (isWin) {
         elRestart.innerText = WIN
+
         switch (gLevel.SIZE) {
             case 2:
                 gEasyBetScores.push(gGame.secsPassed)
@@ -253,11 +253,9 @@ function mark(i, j) {
     var gameCopy = copyObj(gGame)
     gRecenGameStats.push(gameCopy)
     if (!gGame.isOn) return
-    var cell = gBoard[i][j]
     if (gIsFirst) return
+    var cell = gBoard[i][j]
     if (cell.isShown) return
-    // adding for the Undo
-
     if (cell.isMarked) {
         cell.isMarked = false
         gGame.markedCount--
@@ -303,10 +301,9 @@ function initManualGame() {
     setMinesNegsCount()
     // adding for the Undo
     gRecentBoards.push(copyBoard(gBoard))
-    console.log(gBoard);
     var gameCopy = copyObj(gGame)
     gRecenGameStats.push(gameCopy)
-    console.log(gLevel);
+    
     gTime = Date.now()
     gTimeInterval = setInterval(renderTime, 10)
 }
