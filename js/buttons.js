@@ -1,5 +1,5 @@
 function setDifficulty(elBtn) {
-    if (!gGame.isOn || gGame.shownCount > 0 || gGame.secsPassed>0) return
+    if (!gGame.isOn || gGame.shownCount > 0 || gGame.secsPassed > 0) return
     toggleDiffBtnsColor(elBtn)
     var btnClassName = elBtn.className
     if (btnClassName === 'easy-btn') {
@@ -99,19 +99,18 @@ function hintClickedHtml(elHint) {
 
 
 function undoMove() {
-    console.log();
-    if (gIsFirst) return
-    if (gGame.shownCount === 0) return
     if (!gGame.isOn) {
         var elRestart = document.querySelector('.restart-container p .restart')
         elRestart.innerText = NORMAL
         gGame.isOn = true
     }
+    if (gIsFirst) return
+    if (gRecenGameStats.length === 0) return
     var currTime = gGame.secsPassed
-    console.log(currTime);
     var prevMove = gRecentBoards.pop()
     var prevStats = gRecenGameStats.pop()
     reAssignObjValues(gGame, prevStats)
+
     for (var i = 0; i < gLevel.SIZE; i++) {
         for (var j = 0; j < gLevel.SIZE; j++) {
             var prevCell = prevMove[i][j]
@@ -195,7 +194,7 @@ function getRandSafeCell() {
 
 function renderSafeClickBtn(elSafeBtn) {
     var elClicksLeftSpan = elSafeBtn.querySelector('span')
-    var opacity = (gSafeClicksLeft === 0)?'0.4':'1'
+    var opacity = (gSafeClicksLeft === 0) ? '0.4' : '1'
     elSafeBtn.style.opacity = opacity
     elClicksLeftSpan.innerText = gSafeClicksLeft
 }

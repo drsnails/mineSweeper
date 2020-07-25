@@ -48,10 +48,10 @@ function init() {
     gGame.markedCount = 0
     gSafeClicksLeft = 3
     gGame.secsPassed = 0
-    
+
     gLevel.SIZE = 4
     gLevel.MINES = 2
-    
+
     clearInterval(gTimeInterval)
     ////// css stuff
     var elTime = document.querySelector('.display .value')
@@ -69,7 +69,7 @@ function init() {
     elTime.innerText = '0.00'
     //////////////////
 
-    
+
     gBoard = createBoard()
     resetDiffBtnsColor()
     gRecentBoards = [copyBoard(gBoard)]
@@ -94,25 +94,25 @@ function renderBoard() {
 
             if (cell.isMine) {
                 cellClass += ' mine'
-                cellContent = MINE   
+                cellContent = MINE
             }
 
             if (cell.isMarked && !cell.isShown) {
                 numColor = 'blue'
                 cellContent = FLAG
                 cellClass += ' mark'
-                
+
             } else {
                 var numColor = 'transparent'
             }
 
             if (!cell.isShown) {
                 cellClass += ' hidden'
-                
+
             } else {
                 var numColor = getNumberColor(cellContent)
             }
-            
+
             strHtml += `class="cell ${cellClass}" 
             onclick="cellClicked(event, ${i}, ${j}), setMinesManual(${i}, ${j})" 
             oncontextmenu="mark(${i},${j})" style="color: ${numColor};">`
@@ -152,7 +152,6 @@ function createCell(i, j) {
 
 
 function cellClicked(ev, i, j) {
-    
     var cell = gBoard[i][j]
     if (gIsManual) return
     if (!gGame.isOn) return
@@ -190,6 +189,7 @@ function cellClicked(ev, i, j) {
 
 
 function firstClick(firstPos) {
+    
     var elManualBtn = document.querySelector('.manual-btn')
     elManualBtn.style.display = 'none'
     gTime = Date.now()
@@ -217,13 +217,16 @@ function winCheck() {
             if (!(cell.isMarked === cell.isMine)) return false
         }
     }
-    if (gGame.shownCount === (gLevel.SIZE**2 - gLevel.MINES)) {
+    if (gGame.shownCount === (gLevel.SIZE ** 2 - gLevel.MINES)) {
         return true
     }
 }
 
 
 function gameOver(isWin) {
+    gRecentBoards.push(copyBoard(gBoard))
+    var gameCopy = copyObj(gGame)
+    gRecenGameStats.push(gameCopy)
     showAllMineCells()
     clearInterval(gTimeInterval)
     gGame.isOn = false
@@ -236,7 +239,7 @@ function gameOver(isWin) {
             case 2:
                 gEasyBetScores.push(gGame.secsPassed)
                 break;
-        
+
             default:
                 break;
         }
@@ -303,7 +306,7 @@ function initManualGame() {
     gRecentBoards.push(copyBoard(gBoard))
     var gameCopy = copyObj(gGame)
     gRecenGameStats.push(gameCopy)
-    
+
     gTime = Date.now()
     gTimeInterval = setInterval(renderTime, 10)
 }
