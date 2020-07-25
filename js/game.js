@@ -7,8 +7,6 @@ const HINT = "💡"
 const FLAG = "🚩"
 var gIsUndo = false
 
-var gLiGaps = 10
-
 var gName = '@4stav'
 var gEasyBetScores = []
 
@@ -61,7 +59,6 @@ function init() {
     gIsUndo = false
     gLevel.SIZE = 4
     gLevel.MINES = 2
-    renderBestScores('level4')
     clearInterval(gTimeInterval)
     
     ////// css stuff
@@ -79,12 +76,14 @@ function init() {
     elRestart.innerText = NORMAL
     elTime.innerText = '0.00'
     //////////////////
-
-
+    
+    
     gBoard = createBoard()
     gRecentBoards = [copyBoard(gBoard)]
     gRecenGameStats = []
+    initSafeClickBtn()
     renderBoard()
+    // renderBestScores('level4')
 }
 
 
@@ -243,27 +242,27 @@ function gameOver(isWin) {
     var elRestart = document.querySelector('.restart-container p .restart')
     if (isWin) {
         elRestart.innerText = WIN
-        if (!gIsUndo) {
-            switch (gLevel.SIZE) {
+        // if (!gIsUndo) {
+        //     switch (gLevel.SIZE) {
     
-                case 4:
-                    localStorage['level4'] += ` ${gGame.secsPassed}`
-                    renderBestScores('level4')
-                    break;
+        //         case 4:
+        //             localStorage['level4'] += ` ${gGame.secsPassed}`
+        //             renderBestScores('level4')
+        //             break;
     
-                case 8:
-                    localStorage['level8'] += ` ${gGame.secsPassed}`
-                    renderBestScores('level8')
-                    break;
+        //         case 8:
+        //             localStorage['level8'] += ` ${gGame.secsPassed}`
+        //             renderBestScores('level8')
+        //             break;
     
-                case 12:
-                    localStorage['level12'] += ` ${gGame.secsPassed}`
-                    renderBestScores('level12')
+        //         case 12:
+        //             localStorage['level12'] += ` ${gGame.secsPassed}`
+        //             renderBestScores('level12')
     
-                default:
-                    break;
-            }
-        }
+        //         default:
+        //             break;
+        //     }
+        // }
 
     } else {
         elRestart.innerText = DEAD
@@ -332,17 +331,17 @@ function initManualGame() {
     gTimeInterval = setInterval(renderTime, 10)
 }
 
-function renderBestScores(level) {
-    var elScoresHead = document.querySelector('.scores-head span')
-    var elOl = document.querySelector('ol')
-    elScoresHead.innerText = `(${gLevel.SIZE}x${gLevel.SIZE})`
-    var scoresArray = localStorage[level]
-    scoresArray = scoresArray.split(' ')
-    scoresArray.sort(function (a, b) { return parseFloat(a) - parseFloat(b) })
-    elOl.innerHTML = ''
-    for (var i = 1; i < scoresArray.length; i++) {
-        elOl.innerHTML += `<li style="top: ${20*i}"px>  ${scoresArray[i]}s`
-        elOl.innerHTML += `</li> `
+// function renderBestScores(level) {
+//     var elScoresHead = document.querySelector('.scores-head span')
+//     var elOl = document.querySelector('ol')
+//     elScoresHead.innerText = `(${gLevel.SIZE}x${gLevel.SIZE})`
+//     var scoresArray = localStorage[level]
+//     scoresArray = scoresArray.split(' ')
+//     scoresArray.sort(function (a, b) { return parseFloat(a) - parseFloat(b) })
+//     elOl.innerHTML = ''
+//     for (var i = 1; i < scoresArray.length; i++) {
+//         elOl.innerHTML += `<li>  ${scoresArray[i]} sec`
+//         elOl.innerHTML += `</li> `
 
-    }
-}
+//     }
+// }

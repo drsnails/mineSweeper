@@ -4,15 +4,15 @@ function setDifficulty(elBtn) {
     var btnClassName = elBtn.className
     if (btnClassName === 'easy-btn') {
         gLevel.SIZE = 4;
-        renderBestScores('level4')
+        // renderBestScores('level4')
         gLevel.MINES = 2
     } else if (btnClassName === 'medium-btn') {
         gLevel.SIZE = 8;
-        renderBestScores('level8')
+        // renderBestScores('level8')
         gLevel.MINES = 12
     } else if (btnClassName === 'hard-btn') {
         gLevel.SIZE = 12;
-        renderBestScores('level12')
+        // renderBestScores('level12')
         gLevel.MINES = 30
     }
     gGame.shownCount = 0
