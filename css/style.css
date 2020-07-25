@@ -26,14 +26,14 @@ header {
 
 .hints {
     position: absolute;
-    left: 0%;
+    left: 3.8%;
     top: 15%;
     display: inline;
 }
 
 .hint1, .hint2, .hint3 {
     width: 500px;
-    margin: 0px 20px 0px 0px;
+    margin: 0px 10px;
     font-size: 35px;
     padding-top: 6px;
     border-radius: 50%;
@@ -68,7 +68,7 @@ header {
     font-size: 30px;
     width: 45%;
     height: 100%;
-    left: 58%;
+    left: 65%;
     top: 13%
 }
 
@@ -117,7 +117,7 @@ header {
     width: fit-content;
     padding: 15px;
     height: 80px;
-    left: 0%;
+    left: 25%;
     border-radius:15px;
     /* border-style: groove; */
     border-color: rgb(83, 187, 235);
@@ -193,7 +193,7 @@ td {
 }
 .scores-head {
     position: absolute;
-    width: 25%;
+    width: 15%;
     color: rgb(255, 241, 218);
     text-align: left;
     left: 0%;
@@ -212,7 +212,7 @@ ol {
 
 li {
     color: rgb(255, 241, 218);
-    width: 100%;
+    width: 70%;
     text-align: center;
     margin-left: 10px;
     
