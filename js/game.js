@@ -330,17 +330,17 @@ function initManualGame() {
     gTimeInterval = setInterval(renderTime, 10)
 }
 
-function renderBestScores(level) {
-    var elScoresHead = document.querySelector('.scores-head span')
-    var elOl = document.querySelector('ol')
-    elScoresHead.innerText = `(${gLevel.SIZE}x${gLevel.SIZE})`
-    var scoresArray = localStorage[level]
-    scoresArray = scoresArray.split(' ')
-    scoresArray.sort(function (a, b) { return parseFloat(a) - parseFloat(b) })
-    elOl.innerHTML = ''
-    for (var i = 1; i < scoresArray.length; i++) {
-        elOl.innerHTML += `<li>  ${scoresArray[i]} sec`
-        elOl.innerHTML += `</li> `
+// function renderBestScores(level) {
+//     var elScoresHead = document.querySelector('.scores-head span')
+//     var elOl = document.querySelector('ol')
+//     elScoresHead.innerText = `(${gLevel.SIZE}x${gLevel.SIZE})`
+//     var scoresArray = localStorage[level]
+//     scoresArray = scoresArray.split(' ')
+//     scoresArray.sort(function (a, b) { return parseFloat(a) - parseFloat(b) })
+//     elOl.innerHTML = ''
+//     for (var i = 1; i < scoresArray.length; i++) {
+//         elOl.innerHTML += `<li>  ${scoresArray[i]} sec`
+//         elOl.innerHTML += `</li> `
 
-    }
-}
+//     }
+// }
