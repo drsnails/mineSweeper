@@ -59,7 +59,7 @@ function init() {
     gIsUndo = false
     gLevel.SIZE = 4
     gLevel.MINES = 2
-    renderBestScores('level4')
+    // renderBestScores('level4')
     clearInterval(gTimeInterval)
     
     ////// css stuff
@@ -241,27 +241,27 @@ function gameOver(isWin) {
     var elRestart = document.querySelector('.restart-container p .restart')
     if (isWin) {
         elRestart.innerText = WIN
-        if (!gIsUndo) {
-            switch (gLevel.SIZE) {
+        // if (!gIsUndo) {
+        //     switch (gLevel.SIZE) {
     
-                case 4:
-                    localStorage['level4'] += ` ${gGame.secsPassed}`
-                    renderBestScores('level4')
-                    break;
+        //         case 4:
+        //             localStorage['level4'] += ` ${gGame.secsPassed}`
+        //             renderBestScores('level4')
+        //             break;
     
-                case 8:
-                    localStorage['level8'] += ` ${gGame.secsPassed}`
-                    renderBestScores('level8')
-                    break;
+        //         case 8:
+        //             localStorage['level8'] += ` ${gGame.secsPassed}`
+        //             renderBestScores('level8')
+        //             break;
     
-                case 12:
-                    localStorage['level12'] += ` ${gGame.secsPassed}`
-                    renderBestScores('level12')
+        //         case 12:
+        //             localStorage['level12'] += ` ${gGame.secsPassed}`
+        //             renderBestScores('level12')
     
-                default:
-                    break;
-            }
-        }
+        //         default:
+        //             break;
+        //     }
+        // }
 
     } else {
         elRestart.innerText = DEAD
