@@ -171,7 +171,7 @@ function showSafeCell(safeCell) {
     setTimeout(function () {
         safeCell.isShown = false
         renderBoard()
-    }, 800)
+    }, 900)
 }
 
 

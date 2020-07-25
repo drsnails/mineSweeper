@@ -119,10 +119,10 @@ header {
     padding: 15px;
     height: 80px;
     left: 25%;
-    border-radius: 40px;
+    border-radius:15px;
     /* border-style: groove; */
     border-color: tomato;
-    border-width: 1.3px;
+    border-width: 1px;
 }
 
 
@@ -226,7 +226,7 @@ button {
     color: rgb(18, 121, 115);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     outline: none;
     background-color: rgb(253, 246, 209);
     transition: 0.2s;
