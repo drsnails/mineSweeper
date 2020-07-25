@@ -6,6 +6,7 @@ const MINE = "&#128163"
 const HINT = "💡"
 const FLAG = "🚩"
 
+var gName = '@4stav'
 var gEasyBetScores = []
 
 var gIsFirst = true
@@ -19,6 +20,10 @@ var gRecenGameStats = []
 var gIsManual = false
 var gVisited;
 var gSafeClicksLeft;
+
+localStorage.setItem('level4', [])
+localStorage.setItem('level8', [])
+localStorage.setItem('level12', [])
 
 
 var gLevel = {
@@ -36,6 +41,7 @@ var gGame = {
 
 
 function init() {
+
     initHints()
     initSafeClickBtn()
     gIsFirst = true
@@ -48,9 +54,10 @@ function init() {
     gGame.markedCount = 0
     gSafeClicksLeft = 3
     gGame.secsPassed = 0
-
+    
     gLevel.SIZE = 4
     gLevel.MINES = 2
+    renderBestScores('level4')
 
     clearInterval(gTimeInterval)
     ////// css stuff
@@ -189,7 +196,7 @@ function cellClicked(ev, i, j) {
 
 
 function firstClick(firstPos) {
-    
+
     var elManualBtn = document.querySelector('.manual-btn')
     elManualBtn.style.display = 'none'
     gTime = Date.now()
@@ -234,11 +241,21 @@ function gameOver(isWin) {
     var elRestart = document.querySelector('.restart-container p .restart')
     if (isWin) {
         elRestart.innerText = WIN
-
         switch (gLevel.SIZE) {
-            case 2:
-                gEasyBetScores.push(gGame.secsPassed)
+
+            case 4:
+                localStorage['level4'] += ` ${gGame.secsPassed}`
+                renderBestScores('level4')
                 break;
+
+            case 8:
+                localStorage['level8'] += ` ${gGame.secsPassed}`
+                renderBestScores('level8')
+                break;
+
+            case 12:
+                localStorage['level12'] += ` ${gGame.secsPassed}`
+                renderBestScores('level12')
 
             default:
                 break;
@@ -311,3 +328,18 @@ function initManualGame() {
     gTimeInterval = setInterval(renderTime, 10)
 }
 
+function renderBestScores(level) {
+    var elScoresHead =  document.querySelector('.scores-head span')
+    var elOl = document.querySelector('ol')
+    elScoresHead.innerText = `(${gLevel.SIZE}x${gLevel.SIZE})`
+    var scoresArray = localStorage[level]
+    scoresArray = scoresArray.split(' ')
+    scoresArray.sort(function(a, b){return parseFloat(a)-parseFloat(b)})
+    console.log(scoresArray);
+    elOl.innerHTML = ''
+    for (var i = 1; i < scoresArray.length; i++) {
+        elOl.innerHTML += `<li>  ${scoresArray[i]}`
+        elOl.innerHTML += `</li> `
+
+    }
+}
