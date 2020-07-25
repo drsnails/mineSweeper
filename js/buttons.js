@@ -109,7 +109,7 @@ function undoMove() {
     }
     if (gIsFirst) return
     if (gRecenGameStats.length === 0) return
-    var currTime = gGame.secsPassed
+    // var currTime = gGame.secsPassed
     var prevMove = gRecentBoards.pop()
     var prevStats = gRecenGameStats.pop()
     reAssignObjValues(gGame, prevStats)
@@ -122,8 +122,7 @@ function undoMove() {
         }
     }
 
-    gTime += (currTime - gGame.secsPassed) * 1000
-    var elSafeClickBtn = document.querySelector('.safe-click')
+    // gTime += (currTime - gGame.secsPassed) * 1000
     renderBoard()
 }
 

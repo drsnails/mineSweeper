@@ -335,10 +335,9 @@ function renderBestScores(level) {
     var scoresArray = localStorage[level]
     scoresArray = scoresArray.split(' ')
     scoresArray.sort(function(a, b){return parseFloat(a)-parseFloat(b)})
-    console.log(scoresArray);
     elOl.innerHTML = ''
     for (var i = 1; i < scoresArray.length; i++) {
-        elOl.innerHTML += `<li>  ${scoresArray[i]}`
+        elOl.innerHTML += `<li>  ${scoresArray[i]} sec`
         elOl.innerHTML += `</li> `
 
     }
