@@ -104,10 +104,14 @@ function renderHintsHtml(elHint) {
 function undoMove() {
     if (!gGame.isOn) {
         var elRestart = document.querySelector('.restart-container p .restart')
+        var elLogScreen = document.querySelector('.display .value')
+        elLogScreen.innerText = '0.00'
         elRestart.innerText = NORMAL
+        gGame.secsPassed = 0
         gGame.isOn = true
     }
     if (gIsFirst) return
+    gIsUndo = true
     if (gRecenGameStats.length === 0) return
     // var currTime = gGame.secsPassed
     var prevMove = gRecentBoards.pop()
