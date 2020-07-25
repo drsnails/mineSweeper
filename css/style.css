@@ -26,7 +26,7 @@ header {
 
 .hints {
     position: absolute;
-    left: 25%;
+    left: 0%;
     top: 15%;
     display: inline;
 }
@@ -53,25 +53,22 @@ header {
 .restart-container {
     position: relative;
     font-size: 60px;
-    width: 25%;
+    width: 20%;
     height: 100%;
     margin: 0 auto;
 }
 
-
-
 .restart-container p .restart{
     cursor: pointer;
     padding: 3%;
-    z-index: 2;
 }
 
 .display {
     position: absolute;
     font-size: 30px;
-    width: 25%;
+    width: 45%;
     height: 100%;
-    right: 18%;
+    left: 58%;
     top: 13%
 }
 
@@ -120,7 +117,7 @@ header {
     width: fit-content;
     padding: 15px;
     height: 80px;
-    left: 55%;
+    left: 0%;
     border-radius:15px;
     /* border-style: groove; */
     border-color: rgb(83, 187, 235);
@@ -196,7 +193,7 @@ td {
 }
 .scores-head {
     position: absolute;
-    width: 15%;
+    width: 25%;
     color: rgb(255, 241, 218);
     text-align: left;
     left: 0%;
@@ -215,7 +212,7 @@ ol {
 
 li {
     color: rgb(255, 241, 218);
-    width: 70%;
+    width: 100%;
     text-align: center;
     margin-left: 10px;
     
