@@ -26,6 +26,10 @@ var gSafeClicksLeft;
 // localStorage.setItem('level8', [])
 // localStorage.setItem('level12', [])
 
+// localStorage.removeItem('level4')
+// localStorage.removeItem('level8')
+// localStorage.removeItem('level12')
+
 
 var gLevel = {
     SIZE: 4,
@@ -335,6 +339,9 @@ function renderBestScores(level) {
     var elScoresHead = document.querySelector('.scores-head span')
     var elOl = document.querySelector('ol')
     elScoresHead.innerText = `(${gLevel.SIZE}x${gLevel.SIZE})`
+    if (!localStorage[level]) {
+        return
+    }
     var scoresArray = localStorage[level]
     scoresArray = scoresArray.split(' ')
     scoresArray.sort(function (a, b) { return parseFloat(a) - parseFloat(b) })
