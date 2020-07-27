@@ -50,6 +50,7 @@ function init() {
     initHints()
     initSafeClickBtn()
     resetDiffBtnsColor()
+    renderBestScores('level4')
     gIsFirst = true
     gIsManual = false
     gElHintClicked = null
