@@ -340,6 +340,7 @@ function renderBestScores(level) {
     var elOl = document.querySelector('ol')
     elScoresHead.innerText = `(${gLevel.SIZE}x${gLevel.SIZE})`
     if (!localStorage[level]) {
+        elOl.innerHTML = ''
         return
     }
     var scoresArray = localStorage[level]
