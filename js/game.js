@@ -311,10 +311,16 @@ function renderTime() {
 function setMinesManual(i, j) {
     if (!gIsManual) return
     var cell = gBoard[i][j]
-    gLevel.MINES++
-    cell.isMine = true
-    cell.isShown = true
-    gLevel.MINES
+    if (cell.isMine) {
+        cell.isMine = false;
+        cell.isShown = false;
+        gLevel.MINES--
+    } else {
+        cell.isMine = true
+        cell.isShown = true
+        gLevel.MINES++
+    }
+    
     renderBoard()
 
 }
